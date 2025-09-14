@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,5 +17,10 @@
     <p>O uso básico do GoBuster é o seguinte:</p>
     <pre><code>gobuster dir -u <URL> -w <WORDLIST></code></pre>
     <p>Substitua <URL> pela URL do alvo e <WORDLIST> pelo caminho para sua lista de palavras.</p>
+    <h2> Exemplos de Uso: </h2>
+    <h3> Descoberta de Diretórios: </h3>
+    <pre><code>gobuster dir -u http://exemplo.com -w /caminho/para/wordlist.txt</code></pre><!--"Aqui vai colocar o exemplo o URL do site que vai atacar..."-->
+    <h3> Descoberta de Arquivos: </h3>
+    <pre><code>gobuster dir -u http://exemplo.com -w /caminho/para/wordlist.txt -x php,html</code></pre><!-- aqui a gente pode mudar o que está( pode-se colocar a a injeção de SQL no banco de dados. )-->
 </body>
 </html>
