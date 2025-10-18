@@ -9,8 +9,7 @@
 /* Fundo com dragão + brilho cyber */
 body {
     background: 
-        linear-gradient(rgba(20, 40, 80, 0.6), rgba(0, 0, 0, 0.85)),
-        url("kali-dragon.jpg") no-repeat center center fixed;
+         linear-gradient(135deg, #7C5CFA 0%, #3B1DBF 100%);
     background-size: cover;
     filter: brightness(1.15) saturate(1.2);
     color: #f0f6fc;
@@ -23,32 +22,11 @@ h1 {
     text-align: center;
     margin-bottom: 30px;
     font-size: 2.5rem;
-    color: #58a6ff;
-    text-shadow: 
-        0 0 5px #58a6ff,
-        0 0 10px #58a6ff,
-        0 0 20px #58a6ff,
-        0 0 40px #1f6feb;
-    animation: neonPulse 2s infinite alternate;
+    color: #0e090e;
 }
 
-/* Animação de pulsar luz neon */
-@keyframes neonPulse {
-    from {
-        text-shadow: 
-            0 0 5px #58a6ff,
-            0 0 10px #58a6ff,
-            0 0 20px #58a6ff,
-            0 0 40px #1f6feb;
-    }
-    to {
-        text-shadow: 
-            0 0 10px #58a6ff,
-            0 0 20px #58a6ff,
-            0 0 30px #58a6ff,
-            0 0 60px #1f6feb;
-    }
-}
+
+
 
 /* Container dos cards */
 .container {
