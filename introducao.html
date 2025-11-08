@@ -4,59 +4,367 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Introdução à Segurança Cibernética</title>
-    <link rel="stylesheet" href="intrud.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="'video.css">
+
+
 </head>
 <body>
-    <functionalheader>
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
-            </ul>
-        </nav>
-    <h1>Conceitos básicos de segurança Cibernética !</h1>
-    <p>A segurança cibernética é a prática de proteger sistemas, redes e programas contra ataques digitais. Esses ataques geralmente visam acessar, alterar ou destruir informações confidenciais; extorquir dinheiro dos usuários; ou interromper processos de negócios normais.</p>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="page.js"></script>
 
-    <h2>Importância da Segurança Cibernética</h2>
-    <p>Com o aumento da dependência da tecnologia, a segurança cibernética se tornou uma preocupação crítica para indivíduos e organizações. A proteção de dados sensíveis e a garantia da privacidade são fundamentais para manter a confiança dos usuários e a integridade dos sistemas.</p>
+    
+    
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-    <h2>Ameaças Comuns</h2>
-    <ul>
-        <li>Malware: Software malicioso projetado para causar danos.</li>
-        <li>Phishing: Tentativas de enganar usuários para que revelem informações pessoais.</li>
-        <li>Ransomware: Um tipo de malware que bloqueia o acesso a dados até que um resgate seja pago.</li>
+  <!-- Botão de modo escuro -->
+  <button id="themeToggle" class="btn btn-primary">🌙 Modo Escuro</button>
+
+    <script>
+    const html = document.documentElement;
+    const button = document.getElementById('themeToggle');
+
+    button.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-bs-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-bs-theme', newTheme);
+      button.textContent = newTheme === 'dark' ? '☀ Modo Claro' : '🌙 Modo Escuro';
+    });
+
+    // Destaca o link ativo no menu
+    document.querySelectorAll('.navbar a').forEach(link => {
+      if (link.href === window.location.href) {
+        link.classList.add('active');
+      }
+    });
+  </script>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="introducao.html">Introdução</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="gobuster.html">GoBuster</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="criptografia.html">Criptografia</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            more options
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="blueandred.html">Blue e Red team </a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <!-- CONTEÚDO -->
+<div class="container py-5">
+  <div class="text-center mb-5">
+    <h1 class="fw-bold text-primary">
+      <i class="fas fa-shield-alt me-2"></i> Conceitos Básicos de Segurança Cibernética
+    </h1>
+    <p class="text-muted fs-5 mt-3">
+      Entenda os princípios fundamentais para proteger seus sistemas, dados e redes contra ameaças digitais.
+    </p>
+  </div>
+
+  <section class="mb-5">
+    <h2><i class="fas fa-lock me-2 text-primary"></i> O que é Segurança Cibernética?</h2>
+    <p>
+      A segurança cibernética é o conjunto de práticas e tecnologias destinadas a proteger sistemas, redes e informações contra ataques digitais. 
+      Esses ataques podem ter como objetivo roubar dados confidenciais, interromper operações ou causar prejuízos financeiros.
+    </p>
+  </section>
+
+  <section class="mb-5">
+    <h2><i class="fas fa-exclamation-triangle me-2 text-warning"></i> Importância da Segurança Cibernética</h2>
+    <p>
+      Com o aumento da digitalização, proteger dados e sistemas é essencial para garantir a continuidade das operações e manter a confiança de usuários e clientes. 
+      Um incidente de segurança pode comprometer a privacidade, gerar perdas financeiras e afetar a reputação de uma organização.
+    </p>
+  </section>
+
+  <section class="mb-5">
+    <h2><i class="fas fa-bug me-2 text-danger"></i> Ameaças Comuns</h2>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item bg-transparent border-0"><strong>Malware:</strong> Software malicioso criado para danificar ou obter controle de sistemas.</li>
+      <li class="list-group-item bg-transparent border-0"><strong>Phishing:</strong> Tentativas de enganar usuários por meio de e-mails ou mensagens falsas.</li>
+      <li class="list-group-item bg-transparent border-0"><strong>Ransomware:</strong> Malware que bloqueia o acesso a dados e exige pagamento para liberá-los.</li>
     </ul>
+  </section>
 
-    <h2>Melhores Práticas de Segurança</h2>
-    <ol>
-        <li>Use senhas fortes e únicas.</li>
-        <li>Mantenha software e sistemas atualizados.</li>
-        <li>Eduque-se e aos outros sobre os riscos de segurança.</li>
-        <li>Implemente autenticação de dois fatores (2FA).</li>
-        <li>Faça backups regulares dos dados importantes.</li>
+  <section class="mb-5">
+    <h2><i class="fas fa-check-circle me-2 text-success"></i> Melhores Práticas de Segurança</h2>
+    <ol class="list-group list-group-numbered">
+      <li class="list-group-item bg-transparent border-0">Use senhas fortes, longas e únicas para cada conta.</li>
+      <li class="list-group-item bg-transparent border-0">Mantenha sistemas e softwares sempre atualizados.</li>
+      <li class="list-group-item bg-transparent border-0">Desconfie de links e anexos desconhecidos.</li>
+      <li class="list-group-item bg-transparent border-0">Ative a autenticação de dois fatores (2FA).</li>
+      <li class="list-group-item bg-transparent border-0">Faça backups regulares de seus dados importantes.</li>
     </ol>
-    <h2> Fator Humano nas invasões</h2>
-    <ol>
-        <li>Engenharia Social: Manipulação psicológica para obter informações confidenciais.</li>
-        <li>Phishing: Envio de e-mails fraudulentos para enganar usuários.</li>
-        <li>Pretexting: Criação de um cenário falso para obter informações.</li>
-        <li>Baiting: Oferecer algo atraente para induzir a vítima a agir.</li>
-        <li>Quid Pro Quo: Promessa de benefício em troca de informações.</li>
-    </ol>
-   <ul>
-  <li>
-    <p>Compreender o fator humano é crucial para fortalecer a segurança cibernética, pois muitas violações ocorrem devido a erros ou manipulações humanas.</p>
-  </li>
-</ul>
+  </section>
+
+  <section class="mb-5">
+    <h2><i class="fas fa-user-secret me-2 text-secondary"></i> O Fator Humano nas Invasões</h2>
+    <p>
+      A maioria das violações de segurança ocorre devido a falhas humanas — por descuido, falta de atenção ou manipulação psicológica. 
+      Entender e reduzir esses riscos é fundamental para fortalecer a defesa cibernética.
+    </p>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item bg-transparent border-0"><strong>Engenharia Social:</strong> Manipulação psicológica para obter informações confidenciais.</li>
+      <li class="list-group-item bg-transparent border-0"><strong>Phishing:</strong> Envio de comunicações falsas que simulam fontes legítimas.</li>
+      <li class="list-group-item bg-transparent border-0"><strong>Pretexting:</strong> Criação de histórias falsas para enganar a vítima e obter dados.</li>
+      <li class="list-group-item bg-transparent border-0"><strong>Baiting:</strong> Oferta de algo atrativo para induzir a vítima a agir.</li>
+      <li class="list-group-item bg-transparent border-0"><strong>Quid Pro Quo:</strong> Troca de informações em troca de um suposto benefício.</li>
+    </ul>
+    <div class="alert alert-info mt-3 border-0 bg-opacity-75">
+      <i class="fas fa-info-circle me-2"></i> 
+      Conscientização e treinamento contínuo são as melhores defesas contra ataques baseados no fator humano.
+    </div>
+    <!-- SCRIPT BOOTSTRAP -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- DARK MODE AUTO + SUAVE -->
+<style>
+  html {
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+  }
+
+  /* Forçar contraste adequado */
+  [data-bs-theme="dark"] {
+    --bs-body-bg: #121212;
+    --bs-body-color: #f1f1f1;
+  }
+
+  [data-bs-theme="light"] {
+    --bs-body-bg: #ffffff;
+    --bs-body-color: #212529;
+  }
+
+  /* Sombras leves para caixas e vídeos */
+  .shadow-sm {
+    transition: box-shadow 0.3s ease;
+  }
+
+  [data-bs-theme="dark"] .shadow-sm {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+
+  [data-bs-theme="light"] .shadow-sm {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+</style>
+
 
     <h2>Vídeo</h2>
     <p>Assista ao vídeo abaixo para uma introdução visual à segurança cibernética:</p>
-<iframe 
-    width="560" 
-    height="315" 
-    src="https://www.youtube.com/embed/ef42hn1iSvQ" 
-    title="Introdução à Segurança Cibernética"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
-</iframe>
+  <style>
+  html {
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+  }
+
+  /* Forçar contraste adequado */
+  [data-bs-theme="dark"] {
+    --bs-body-bg: #121212;
+    --bs-body-color: #f1f1f1;
+  }
+
+  [data-bs-theme="light"] {
+    --bs-body-bg: #ffffff;
+    --bs-body-color: #212529;
+  }
+
+  /* Sombras leves para caixas e vídeos */
+  .shadow-sm {
+    transition: box-shadow 0.3s ease;
+  }
+
+  [data-bs-theme="dark"] .shadow-sm {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+
+  [data-bs-theme="light"] .shadow-sm {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+</style>
+
+<!-- usando Bootstrap 5 -->
+<div class="video-container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/h_aRZwzjYxs?si=BkT7_pztwjnaAdI4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<!-- ESTILO EXTRA -->
+<style>
+  #themeToggle {
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+
+  #themeToggle i {
+    transition: transform 0.4s ease;
+  }
+
+  #themeToggle:hover i {
+    transform: rotate(20deg);
+  }
+
+  #themeToggle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+</style>
+<style>
+    /* ======== ESTILO PADRÃO (modo claro) ======== */
+    body {
+      font-family: "Inter", sans-serif;
+      background: #f4f6fa;
+      color: #212529;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .course-list {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .course-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border-left: 6px solid #0d6efd;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .course-card h3 {
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      color: #0d6efd;
+    }
+
+    .course-card p {
+      margin-bottom: 1rem;
+      color: #444;
+    }
+
+    .btn-start {
+      background: #0d6efd;
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-start:hover {
+      background: #084bcc;
+      box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+    }
+
+    /* Botão de tema */
+    #themeToggle {
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      border-radius: 25px;
+    }
+
+    #themeToggle:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      color: #555;
+    }
+
+    /* ======== MODO ESCURO ======== */
+    html[data-bs-theme="dark"] {
+      --bs-body-bg: #121212;
+      --bs-body-color: #e0e0e0;
+    }
+
+    html[data-bs-theme="dark"] body {
+      background: var(--bs-body-bg);
+      color: var(--bs-body-color);
+    }
+
+    html[data-bs-theme="dark"] .navbar {
+      background-color: #1e1e1e !important;
+    }
+
+    html[data-bs-theme="dark"] .navbar a {
+      color: #e0e0e0 !important;
+    }
+
+    html[data-bs-theme="dark"] .navbar a:hover {
+      color: #0d6efd !important;
+    }
+
+    html[data-bs-theme="dark"] .course-card {
+      background: #1e1e1e;
+      color: #e0e0e0;
+      border-left-color: #0d6efd;
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+    }
+
+    html[data-bs-theme="dark"] .course-card h3 {
+      color: #4a9eff;
+    }
+
+    html[data-bs-theme="dark"] .btn-start {
+      background: #0d6efd;
+      color: #fff;
+    }
+
+    html[data-bs-theme="dark"] .btn-start:hover {
+      background: #2974ff;
+      box-shadow: 0 4px 10px rgba(13, 110, 253, 0.4);
+    }
+
+    html[data-bs-theme="dark"] footer {
+      background: #0d0d0d;
+      color: #aaa;
+    }
+  </style>
 </body>
+<footer><p>This site was developed for educational purposes as part of the Cyber Security course at UNIFENAS.</p></footer>
 </html>

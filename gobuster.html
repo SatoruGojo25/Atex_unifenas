@@ -4,33 +4,325 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoBuster</title>
-    <link rel="stylesheet" href="stilo.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="page.js"></script>
+    <button id="themeToggle" class="btn btn-primary">🌙 Modo Escuro</button>
+    <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* ======== ESTILO PADRÃO (modo claro) ======== */
+    body {
+      font-family: "Inter", sans-serif;
+      background: #f4f6fa;
+      color: #212529;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .course-list {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .course-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border-left: 6px solid #0d6efd;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .course-card h3 {
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      color: #0d6efd;
+    }
+
+    .course-card p {
+      margin-bottom: 1rem;
+      color: #444;
+    }
+
+    .btn-start {
+      background: #0d6efd;
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-start:hover {
+      background: #084bcc;
+      box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+    }
+
+    /* Botão de tema */
+    #themeToggle {
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      border-radius: 25px;
+    }
+
+    #themeToggle:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      color: #555;
+    }
+
+    /* ======== MODO ESCURO ======== */
+    html[data-bs-theme="dark"] {
+      --bs-body-bg: #121212;
+      --bs-body-color: #e0e0e0;
+    }
+
+    html[data-bs-theme="dark"] body {
+      background: var(--bs-body-bg);
+      color: var(--bs-body-color);
+    }
+
+    html[data-bs-theme="dark"] .navbar {
+      background-color: #1e1e1e !important;
+    }
+
+    html[data-bs-theme="dark"] .navbar a {
+      color: #e0e0e0 !important;
+    }
+
+    html[data-bs-theme="dark"] .navbar a:hover {
+      color: #0d6efd !important;
+    }
+
+    html[data-bs-theme="dark"] .course-card {
+      background: #1e1e1e;
+      color: #e0e0e0;
+      border-left-color: #0d6efd;
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+    }
+
+    html[data-bs-theme="dark"] .course-card h3 {
+      color: #4a9eff;
+    }
+
+    html[data-bs-theme="dark"] .btn-start {
+      background: #0d6efd;
+      color: #fff;
+    }
+
+    html[data-bs-theme="dark"] .btn-start:hover {
+      background: #2974ff;
+      box-shadow: 0 4px 10px rgba(13, 110, 253, 0.4);
+    }
+
+    html[data-bs-theme="dark"] footer {
+      background: #0d0d0d;
+      color: #aaa;
+    }
+  </style>
+
+    
+      <script>
+    const html = document.documentElement;
+    const button = document.getElementById('themeToggle');
+
+    button.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-bs-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-bs-theme', newTheme);
+      button.textContent = newTheme === 'dark' ? '☀ Modo Claro' : '🌙 Modo Escuro';
+    });
+
+    // Destaca o link ativo no menu
+    document.querySelectorAll('.navbar a').forEach(link => {
+      if (link.href === window.location.href) {
+        link.classList.add('active');
+      }
+    });
+  </script>
+</script>
+
+
+    </script>
 </head>
 <body>
-    <h1>GoBuster</h1>
-    <p>GoBuster é uma ferramenta de força bruta para descobrir arquivos e diretórios em servidores web.</p>
-    <h2>Instalação</h2>
-    <p>Para instalar o GoBuster, você pode usar o seguinte comando:</p>
-    <pre><code>go get -u github.com/OJ/gobuster/v3</code></pre>
-    <h2>Uso Básico</h2>
-    <p>O uso básico do GoBuster é o seguinte:</p>
-    <pre><code>gobuster dir -u <URL> -w <WORDLIST></code></pre>
-    <p>Substitua <URL> pela URL do alvo e <WORDLIST> pelo caminho para sua lista de palavras.</p>
-    <h2> Exemplos de Uso: </h2>
-    <h3> Descoberta de Diretórios: </h3>
-    <pre><code>gobuster dir -u http://exemplo.com -w /caminho/para/wordlist.txt</code></pre><!--"Aqui vai colocar o exemplo o URL do site que vai atacar..."-->
-    <h3> Descoberta de Arquivos: </h3>
-    <pre><code>gobuster dir -u http://exemplo.com -w /caminho/para/wordlist.txt -x php,html</code></pre><!-- aqui a gente pode mudar o que está( pode-se colocar a a injeção de SQL no banco de dados. )-->
-    <h2>Opções Comuns</h2>
-    <ul>
-        <li><strong>-u</strong>: Especifica a URL do alvo.</li>
-        <li><strong>-w</strong>: Especifica o caminho para a lista de palavras.</li>
-        <li><strong>-x</strong>: Especifica as extensões de arquivo a serem testadas.</li>
-        <li><strong>-t</strong>: Define o número de threads para usar.</li>
-        <li><strong>-o</strong>: Especifica o arquivo de saída para salvar os resultados.</li>
-    </ul>
-    <h2>Considerações Finais</h2>
-    <p>GoBuster é uma ferramenta poderosa para descobrir arquivos e diretórios ocultos em servidores web. Use-a com responsabilidade e sempre obtenha permissão antes de realizar testes de penetração em qualquer sistema.</p>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="introducao.html">Introdução</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gobuster.html">GoBuster</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="criptografia.html">Criptografia</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              more options
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="blueandred.html">Blue e Red team</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+ <h1>GoBuster — Descoberta de Diretórios e Arquivos</h1>
+
+<p>
+  <strong>GoBuster</strong> é uma ferramenta de força bruta escrita em Go para descobrir
+  diretórios, arquivos e nomes de host em servidores web. É muito usada em testes de
+  pentest e reconhecimento (recon) para mapear superfícies de ataque.  
+  Use-a sempre de forma ética e legal — só teste sistemas para os quais você tem permissão.
+</p>
+
+<h2>Instalação</h2>
+<p>Instale a partir do código fonte com o <code>go</code> (requere o Go instalado):</p>
+<pre><code>go get -u github.com/OJ/gobuster/v3</code></pre>
+<p>ou consulte o repositório oficial para releases e pacotes pré-compilados.</p>
+
+<h2>Uso básico</h2>
+<p>Exemplo mínimo para descobrir diretórios:</p>
+<pre><code>gobuster dir -u http://exemplo.com -w /caminho/para/wordlist.txt</code></pre>
+<p>
+  Substitua <code>http://exemplo.com</code> pela URL-alvo e <code>/caminho/para/wordlist.txt</code>
+  pela sua lista de palavras.
+</p>
+
+<h2>Principais opções (flags) e significado</h2>
+<ul>
+  <li><strong>-u</strong> : URL ou alvo (ex.: <code>-u http://exemplo.com</code>).</li>
+  <li><strong>-w</strong> : caminho para a <em>wordlist</em> (lista de nomes a testar).</li>
+  <li><strong>-x</strong> : extensões a testar, separadas por vírgula (ex.: <code>-x php,html,txt</code>).</li>
+  <li><strong>-t</strong> : threads/concurrency (ex.: <code>-t 50</code>) — aumenta velocidade, mas gera mais tráfego.</li>
+  <li><strong>-o</strong> : salva o output em arquivo (ex.: <code>-o resultados.txt</code>).</li>
+  <li><strong>-s</strong> : filtrar por códigos HTTP (ex.: <code>-s 200,204,301,302,307,403</code>).</li>
+  <li><strong>-k</strong> : ignora problemas de certificado TLS (não recomendado sem necessidade).</li>
+  <li><strong>-H</strong> : envia cabeçalho HTTP customizado (ex.: <code>-H "Authorization: Bearer ..."</code>).</li>
+  <li><strong>-p</strong> : usa proxy (ex.: <code>-p http://127.0.0.1:8080</code>).</li>
+</ul>
+
+<h2>Exemplos práticos</h2>
+
+<h3>Descoberta de diretórios (básico)</h3>
+<pre><code>gobuster dir -u http://exemplo.com -w /usr/share/wordlists/dirb/common.txt -t 40 -o resultados.txt</code></pre>
+
+<h3>Testar extensões (arquivos PHP/HTML)</h3>
+<pre><code>gobuster dir -u http://exemplo.com -w /wordlists/common.txt -x php,html,txt -t 50</code></pre>
+
+<h3>Usar um proxy (ex.: Burp) e filtrar por status 200/301/302</h3>
+<pre><code>gobuster dir -u http://exemplo.com -w /wordlists/common.txt -p http://127.0.0.1:8080 -s 200,301,302</code></pre>
+
+<h2>Dicas práticas</h2>
+<ul>
+  <li><strong>Comece com wordlists pequenas</strong> para validar o alvo e aumentar depois. Listas como as do SecLists são um bom começo.</li>
+  <li><strong>Atenção a threads</strong>: valores altos aceleram, mas podem derrubar serviços. Ajuste conforme a estabilidade do alvo.</li>
+  <li><strong>Filtre por códigos úteis</strong> (200, 301, 302, 403) para reduzir ruído. Muitas respostas 404 só atrapalham.</li>
+  <li><strong>Salve sempre o resultado</strong> com <code>-o</code> para análise posterior.</li>
+  <li><strong>Use proxy</strong> (Burp/OWASP ZAP) quando quiser inspecionar requisições/respostas.</li>
+  <li><strong>Respeite limites e políticas</strong> de uso — testes agressivos podem ser detectados e bloqueados.</li>
+</ul>
+
+<h2>Interpretação dos resultados</h2>
+<p>
+  A saída do GoBuster mostra o caminho testado, status HTTP, tamanho da resposta e tempo.
+  Um <code>200</code> geralmente indica recurso existente; <code>301/302</code> redirecionamentos podem indicar páginas reais; <code>403</code> pode ser um diretório protegido.
+</p>
+
+<h2>Problemas comuns e solução rápida</h2>
+<ul>
+  <li><strong>Muitas respostas 404:</strong> verifique se a URL base está correta (com ou sem trailing slash) e ajuste a wordlist.</li>
+  <li><strong>Servidor bloqueando:</strong> reduza <code>-t</code>, adicione delays ou use headers legítimos (User-Agent) com <code>-H</code>.</li>
+  <li><strong>Resultados falsos positivos (páginas custom 404):</strong> compare tamanho de resposta (response length) para identificar padrões.</li>
+</ul>
+
+<h2>Boas práticas e legalidade</h2>
+<p>
+  Use GoBuster apenas em ambientes autorizados (seu laboratório, máquinas suas ou com permissão explícita).
+  Realizar varreduras sem consentimento é ilegal e antiético. Documente seus testes e mantenha logs.
+</p>
+
+<h2>Recursos úteis</h2>
+<ul>
+  <li><a href="https://github.com/OJ/gobuster">Repositório oficial do GoBuster</a> — documentação e opções avançadas.</li>
+  <li>SecLists — coleções de wordlists amplamente usadas em testes de segurança.</li>
+</ul>
+ <h2>Vídeo</h2>
+    <p>Assista ao vídeo abaixo para uma introdução visual à segurança cibernética:</p>
+    <!-- DARK MODE AUTO + SUAVE -->
+<style>
+  html {
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+  }
+
+  /* Forçar contraste adequado */
+  [data-bs-theme="dark"] {
+    --bs-body-bg: #121212;
+    --bs-body-color: #f1f1f1;
+  }
+
+  [data-bs-theme="light"] {
+    --bs-body-bg: #ffffff;
+    --bs-body-color: #212529;
+  }
+
+  /* Sombras leves para caixas e vídeos */
+  .shadow-sm {
+    transition: box-shadow 0.3s ease;
+  }
+
+  [data-bs-theme="dark"] .shadow-sm {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+
+  [data-bs-theme="light"] .shadow-sm {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+</style>
+<!-- usando Bootstrap 5 -->
+<div class="ratio ratio-16x9">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/h_aRZwzjYxs?si=BkT7_pztwjnaAdI4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 </body>
 </html>
