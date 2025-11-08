@@ -1,0 +1,32 @@
+button, a.btn {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+[data-bs-theme="dark"] h1, 
+[data-bs-theme="dark"] h2, 
+[data-bs-theme="dark"] p {
+  color: #f1f1f1; /* bom contraste no escuro */
+}
+[data-bs-theme="dark"] h1,
+[data-bs-theme="dark"] h2,
+[data-bs-theme="dark"] p,
+[data-bs-theme="dark"] li {
+  color: #f1f1f1;
+}
+
+[data-bs-theme="dark"] strong {
+  color: #ffffff;
+}
+
+[data-bs-theme="dark"] em {
+  color: #c5c5ff;
+}
+
+section {
+  line-height: 1.7;
+  font-size: 1.05rem;
+  max-width: 800px;
+  margin: auto;
+  padding: 1.5rem;
+}
