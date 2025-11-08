@@ -1,0 +1,126 @@
+@use "sass:map";
+@use "sass:color";
+
+// Importa o Bootstrap (tem que vir antes de usar suas variáveis/mixins)
+@use "../node_modules/bootstrap/scss/bootstrap" as *;
+
+
+
+/*!
+ * Bootstrap v5.3.8 (https://getbootstrap.com/)
+ * Custom build com personalizações de tema e navbar
+ */
+
+// ==============================
+// VARIÁVEIS PERSONALIZADAS
+// ==============================
+$primary-color-light: #0d6efd;
+$text-color-light: #212529;
+$bg-light: #ffffff;
+
+$primary-color-dark: #66b2ff;
+$text-color-dark: #f8f9fa;
+$bg-dark: #121212;
+
+// ==============================
+// FOCUS RING (EFEITO DE FOCO)
+// ==============================
+$focus-ring-width: .25rem;
+$focus-ring-opacity: .25;
+$focus-ring-color: rgba($primary, $focus-ring-opacity);
+$focus-ring-blur: 0;
+$focus-ring-box-shadow: 0 0 $focus-ring-blur $focus-ring-width $focus-ring-color;
+
+
+// ==============================
+// NAVBAR PERSONALIZADA
+// ==============================
+.navbar {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  background-color: var(--nav-bg);
+  padding: 1rem 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  a {
+    font-family: "Segoe UI", sans-serif;
+    font-size: 1rem;
+    color: var(--nav-text);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--nav-hover);
+    }
+
+    // Linha animada embaixo
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--nav-hover);
+      transition: width 0.3s ease;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+
+    &.active {
+      color: var(--nav-hover);
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+// ==============================
+// MODO ESCURO
+// ==============================
+[data-bs-theme="dark"] {
+  .navbar-nav .nav-link {
+    color: var(--bs-navbar-dark-color);
+
+    &:hover,
+    &:focus {
+      color: var(--bs-navbar-dark-hover-color);
+    }
+  }
+}
+
+
+// ==============================
+// MEDIA QUERIES PERSONALIZADAS
+// ==============================
+
+// Exemplo: elemento escondido até sm
+.custom-class {
+  display: none;
+}
+
+@include media-breakpoint-up(sm) {
+  .custom-class {
+    display: block;
+  }
+}
+
+// Exemplo: mostrar até md
+@include media-breakpoint-down(md) {
+  .custom-class-down {
+    display: block;
+    color: blue;
+  }
+}
+@include media-breakpoint-up(md) {
+  .custom-class-down {
+    display: none;
+  }
+}
