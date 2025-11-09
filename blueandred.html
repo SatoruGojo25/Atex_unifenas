@@ -88,6 +88,26 @@
     [data-bs-theme="dark"] footer {
       color: #aaa;
     }
+    #quizForm {
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+[data-bs-theme="dark"] #quizForm {
+  background-color: rgba(30, 30, 30, 0.85);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+#quizForm input[type="radio"] {
+  margin-right: 6px;
+  accent-color: var(--primary);
+}
+
+#result {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--primary);
+}
+
   </style>
 
   <!-- Navbar -->
@@ -182,6 +202,64 @@
             title="Blue Team e Red Team - Segurança Cibernética"
             allowfullscreen></iframe>
   </div>
+<!-- ======== QUIZ INTERATIVO ======== -->
+<section id="quiz" class="mt-5">
+  <h2><i class="fa-solid fa-question-circle icon"></i> Teste seus conhecimentos</h2>
+  <p>Responda as perguntas abaixo e veja quantas você acerta!</p>
+
+  <form id="quizForm" class="p-4 rounded shadow-sm">
+
+    <div class="mb-3">
+      <label class="form-label"><strong>1.</strong> Qual é o principal foco do Blue Team?</label>
+      <div>
+        <input type="radio" name="q1" value="a"> Simular ataques<br>
+        <input type="radio" name="q1" value="b"> Proteger sistemas e redes<br>
+        <input type="radio" name="q1" value="c"> Criar vírus para testes
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label"><strong>2.</strong> O Red Team realiza:</label>
+      <div>
+        <input type="radio" name="q2" value="a"> Auditorias financeiras<br>
+        <input type="radio" name="q2" value="b"> Testes de penetração<br>
+        <input type="radio" name="q2" value="c"> Instalação de firewalls
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label"><strong>3.</strong> Qual ferramenta é mais usada pelo Red Team?</label>
+      <div>
+        <input type="radio" name="q3" value="a"> Metasploit<br>
+        <input type="radio" name="q3" value="b"> SIEM<br>
+        <input type="radio" name="q3" value="c"> Antivírus
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label"><strong>4.</strong> O Purple Team tem o papel de:</label>
+      <div>
+        <input type="radio" name="q4" value="a"> Substituir o Blue Team<br>
+        <input type="radio" name="q4" value="b"> Fazer a ponte entre Blue e Red Team<br>
+        <input type="radio" name="q4" value="c"> Somente treinar novos hackers
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label"><strong>5.</strong> O principal objetivo do Red Team é:</label>
+      <div>
+        <input type="radio" name="q5" value="a"> Encontrar vulnerabilidades<br>
+        <input type="radio" name="q5" value="b"> Criar relatórios administrativos<br>
+        <input type="radio" name="q5" value="c"> Monitorar logs do sistema
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" id="submitQuiz">Enviar respostas</button>
+
+    <div id="result" class="mt-4 fw-bold"></div>
+  </form>
+</section>
+
 
   <footer>
     <p>This site was developed for educational purposes as part of the Cyber Security course at UNIFENAS.</p>
@@ -201,7 +279,39 @@
       html.setAttribute('data-bs-theme', dark ? 'light' : 'dark');
       btn.textContent = dark ? '🌙 Modo Escuro' : '☀ Modo Claro';
     });
+    // ======== QUIZ SCRIPT ========
+document.getElementById("submitQuiz").addEventListener("click", () => {
+  const correctAnswers = {
+    q1: "b",
+    q2: "b",
+    q3: "a",
+    q4: "b",
+    q5: "a"
+  };
+
+  let score = 0;
+  let total = Object.keys(correctAnswers).length;
+
+  for (const [question, answer] of Object.entries(correctAnswers)) {
+    const selected = document.querySelector(`input[name="${question}"]:checked`);
+    if (selected && selected.value === answer) {
+      score++;
+    }
+  }
+
+  const percentage = Math.round((score / total) * 100);
+  const resultDiv = document.getElementById("result");
+
+  let message = "";
+  if (percentage === 100) message = "Excelente! 🔥 Você acertou tudo!";
+  else if (percentage >= 60) message = "Muito bom! 👏 Continue estudando!";
+  else message = "Você pode melhorar! 💪 Reveja o conteúdo.";
+
+  resultDiv.innerHTML = `✅ Você acertou <strong>${score}</strong> de ${total} perguntas (${percentage}%).<br>${message}`;
+});
+
   </script>
+  
   <!--Satou-->
 </body>
 </html>
