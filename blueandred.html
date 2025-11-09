@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blue Team e Red Team</title>
+  
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #0d6efd;
+      --dark-bg: #121212;
+      --dark-text: #e0e0e0;
+      --light-bg: #f4f6fa;
+      --light-text: #212529;
+      --blue: #007bff;
+      --red: #dc3545;
+      --purple: #6f42c1;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--light-bg);
+      color: var(--light-text);
+      transition: background-color 0.4s ease, color 0.4s ease;
+      padding-bottom: 80px;
+    }
+
+    [data-bs-theme="dark"] body {
+      background: var(--dark-bg);
+      color: var(--dark-text);
+    }
+
+    h1, h2 {
+      color: var(--primary);
+      margin-top: 1.5rem;
+    }
+
+    /* Ícones interativos */
+    .icon {
+      font-size: 2.2rem;
+      margin-right: 10px;
+      transition: transform 0.4s ease, color 0.3s ease;
+    }
+    .icon:hover {
+      transform: rotate(15deg) scale(1.1);
+      color: var(--primary);
+    }
+
+    .blue-icon { color: var(--blue); }
+    .red-icon { color: var(--red); }
+    .purple-icon { color: var(--purple); }
+
+    /* Tabela estilizada */
+    table {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .table thead {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    /* Botão tema */
+    #themeToggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      border-radius: 25px;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+    #themeToggle:hover { transform: scale(1.05); }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      color: #666;
+      margin-top: 40px;
+    }
+
+    [data-bs-theme="dark"] footer {
+      color: #aaa;
+    }
+  </style>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="introducao.html">Introdução</a></li>
+          <li class="nav-item"><a class="nav-link" href="gobuster.html">GoBuster</a></li>
+          <li class="nav-item"><a class="nav-link" href="criptografia.html">Criptografia</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">Mais opções</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="blueandred.html">Blue e Red Team</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</head>
+
+<body class="container mt-4">
+
+  <h1><i class="fa-solid fa-shield-halved icon blue-icon"></i>Diferença entre Blue Team e Red Team</h1>
+  <p>Na segurança cibernética, as equipes <strong>Blue Team</strong> e <strong>Red Team</strong> representam os dois lados da defesa digital: um protege e o outro ataca — ambos essenciais para manter os sistemas seguros.</p>
+
+  <h2><i class="fa-solid fa-user-shield icon blue-icon"></i>Blue Team – Defesa Cibernética</h2>
+  <p>O <strong>Blue Team</strong> é responsável por <strong>proteger</strong> redes e sistemas contra invasões e ameaças. Eles analisam logs, monitoram eventos e respondem rapidamente a incidentes.</p>
+  <ul>
+    <li>Monitora redes em busca de atividades suspeitas.</li>
+    <li>Cria políticas e práticas de segurança.</li>
+    <li>Usa ferramentas como SIEM, firewalls e antivírus.</li>
+    <li>Treina colaboradores para evitar ataques de phishing.</li>
+  </ul>
+
+  <h2><i class="fa-solid fa-user-ninja icon red-icon"></i>Red Team – Ataque Controlado</h2>
+  <p>O <strong>Red Team</strong> atua como um atacante ético, simulando ataques reais para testar a eficácia das defesas. Seu objetivo é encontrar vulnerabilidades antes que criminosos o façam.</p>
+  <ul>
+    <li>Executa testes de penetração (pentests).</li>
+    <li>Explora brechas e falhas de segurança.</li>
+    <li>Utiliza ferramentas como Metasploit, Burp Suite e Nmap.</li>
+    <li>Fornece relatórios detalhados ao Blue Team.</li>
+  </ul>
+
+  <h2><i class="fa-solid fa-people-arrows icon purple-icon"></i>Purple Team – Colaboração</h2>
+  <p>O <strong>Purple Team</strong> faz a ponte entre os dois times, garantindo que as lições aprendidas nos testes do Red Team se transformem em melhorias aplicadas pelo Blue Team.</p>
+
+  <h2><i class="fa-solid fa-bullseye icon"></i>Objetivo</h2>
+  <p>O objetivo é criar um ciclo contínuo de aprendizado e fortalecimento da segurança, em que defesa e ataque trabalham juntos para aperfeiçoar a proteção cibernética da organização.</p>
+
+  <h2><i class="fa-solid fa-scale-balanced icon"></i>Comparativo Rápido</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Aspecto</th>
+        <th>Blue Team</th>
+        <th>Red Team</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Função</td>
+        <td>Defesa cibernética</td>
+        <td>Simulação de ataques</td>
+      </tr>
+      <tr>
+        <td>Objetivo</td>
+        <td>Proteger sistemas e dados</td>
+        <td>Encontrar vulnerabilidades</td>
+      </tr>
+      <tr>
+        <td>Ferramentas</td>
+        <td>SIEM, IDS, antivírus</td>
+        <td>Metasploit, Burp Suite, Nmap</td>
+      </tr>
+      <tr>
+        <td>Perfil profissional</td>
+        <td>Analista SOC, engenheiro de segurança</td>
+        <td>Pentester, ethical hacker</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2><i class="fa-solid fa-play-circle icon"></i>Vídeo Educacional</h2>
+  <div class="ratio ratio-16x9 shadow-sm mb-4">
+    <iframe src="https://www.youtube.com/embed/h_aRZwzjYxs?si=BkT7_pztwjnaAdI4"
+            title="Blue Team e Red Team - Segurança Cibernética"
+            allowfullscreen></iframe>
+  </div>
+
+  <footer>
+    <p>This site was developed for educational purposes as part of the Cyber Security course at UNIFENAS.</p>
+  </footer>
+
+  <!-- Botão de Tema -->
+  <button id="themeToggle" class="btn btn-primary">🌙 Modo Escuro</button>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const html = document.documentElement;
+    const btn = document.getElementById('themeToggle');
+
+    btn.addEventListener('click', () => {
+      const dark = html.getAttribute('data-bs-theme') === 'dark';
+      html.setAttribute('data-bs-theme', dark ? 'light' : 'dark');
+      btn.textContent = dark ? '🌙 Modo Escuro' : '☀ Modo Claro';
+    });
+  </script>
+  <!--Satou-->
+</body>
+</html>
