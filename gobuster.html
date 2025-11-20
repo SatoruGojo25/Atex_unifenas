@@ -325,4 +325,445 @@
     <iframe width="560" height="315" src="https://www.youtube.com/embed/h_aRZwzjYxs?si=BkT7_pztwjnaAdI4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 </body>
+<!-- ================= QUIZ GOBUSTER (10 perguntas — nível misto) ================= -->
+<hr class="my-5">
+
+<section id="gobusterQuiz" class="container mb-5">
+  <h2 class="mt-4"><i class="fas fa-question-circle text-primary me-2"></i> Quiz: GoBuster</h2>
+  <p>Clique em <strong>Iniciar Questionário</strong> para começar. Você terá <strong>2 minutos</strong> para responder todas as perguntas. O quiz finaliza automaticamente quando o tempo acabar.</p>
+
+  <!-- CONTROLES -->
+  <div class="mb-3">
+    <button id="gStartBtn" class="btn btn-primary">Iniciar Questionário</button>
+    <button id="gPauseBtn" class="btn btn-outline-warning" style="display:none;">Pausar</button>
+    <button id="gResumeBtn" class="btn btn-outline-primary" style="display:none;">Retomar</button>
+  </div>
+
+  <!-- TIMER + BARRA -->
+  <div class="d-flex align-items-center mb-2">
+    <div class="me-3 timer-display">⏳ <span id="gCountdown">02:00</span></div>
+    <div style="flex:1">
+      <div class="progress" style="height:14px;">
+        <div id="gTimeBar" class="progress-bar progress-bar-striped" role="progressbar"
+             style="width:100%; transition: width 1s linear;"></div>
+      </div>
+    </div>
+    <div class="ms-3 text-end" style="min-width:110px;">
+      <small>Progresso: <span id="gProgressPct">0%</span></small>
+    </div>
+  </div>
+
+  <!-- FORMULÁRIO (ETAPAS) -->
+  <form id="gQuizForm" style="display:none;">
+    <!-- Q1 -->
+    <div class="card g-step" data-step="0" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">1. O que é GoBuster?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1a" value="a"><label class="form-check-label" for="q1a">Um scanner de portas para redes locais</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1b" value="b"><label class="form-check-label" for="q1b">Ferramenta para descoberta de diretórios, arquivos e hostnames via força bruta</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1c" value="c"><label class="form-check-label" for="q1c">Um firewall de aplicação</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1d" value="d"><label class="form-check-label" for="q1d">Um gerenciador de senhas</label></div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="card g-step" data-step="1" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">2. Qual flag especifica a wordlist em GoBuster?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2a" value="a"><label class="form-check-label" for="q2a">-u</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2b" value="b"><label class="form-check-label" for="q2b">-w</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2c" value="c"><label class="form-check-label" for="q2c">-t</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2d" value="d"><label class="form-check-label" for="q2d">-o</label></div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="card g-step" data-step="2" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">3. Para filtrar por códigos HTTP quais flags são usadas?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3a" value="a"><label class="form-check-label" for="q3a">-x</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3b" value="b"><label class="form-check-label" for="q3b">-s</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3c" value="c"><label class="form-check-label" for="q3c">-p</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3d" value="d"><label class="form-check-label" for="q3d">-k</label></div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="card g-step" data-step="3" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">4. A flag <code>-t</code> serve para:</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4a" value="a"><label class="form-check-label" for="q4a">Definir o timeout de cada request em segundos</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4b" value="b"><label class="form-check-label" for="q4b">Definir o número de threads/concurrency</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4c" value="c"><label class="form-check-label" for="q4c">Especificar extensões a testar</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4d" value="d"><label class="form-check-label" for="q4d">Salvar output em arquivo</label></div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="card g-step" data-step="4" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">5. A opção <code>-x php,html,txt</code> faz o quê?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5a" value="a"><label class="form-check-label" for="q5a">Muda o user-agent</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5b" value="b"><label class="form-check-label" for="q5b">Testa as palavras da lista com essas extensões</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5c" value="c"><label class="form-check-label" for="q5c">Seleciona o proxy</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5d" value="d"><label class="form-check-label" for="q5d">Ignora certificados TLS</label></div>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="card g-step" data-step="5" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">6. Para inspeção via Burp/ZAP, qual flag ajuda a usar proxy?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q6" id="q6a" value="a"><label class="form-check-label" for="q6a">-H</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q6" id="q6b" value="b"><label class="form-check-label" for="q6b">-p</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q6" id="q6c" value="c"><label class="form-check-label" for="q6c">-s</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q6" id="q6d" value="d"><label class="form-check-label" for="q6d">-o</label></div>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="card g-step" data-step="6" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">7. O que um código HTTP 403 normalmente indica na saída do GoBuster?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q7" id="q7a" value="a"><label class="form-check-label" for="q7a">Recurso inexistente</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q7" id="q7b" value="b"><label class="form-check-label" for="q7b">Diretório protegido / acesso negado</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q7" id="q7c" value="c"><label class="form-check-label" for="q7c">Redirecionamento</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q7" id="q7d" value="d"><label class="form-check-label" for="q7d">Erro interno do servidor</label></div>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="card g-step" data-step="7" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">8. Qual prática reduz falsos positivos quando o servidor tem páginas 404 customizadas?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q8" id="q8a" value="a"><label class="form-check-label" for="q8a">Aumentar -t ao máximo</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q8" id="q8b" value="b"><label class="form-check-label" for="q8b">Comparar tamanho de resposta (response length)</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q8" id="q8c" value="c"><label class="form-check-label" for="q8c">Usar -k</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q8" id="q8d" value="d"><label class="form-check-label" for="q8d">Salvar em -o</label></div>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="card g-step" data-step="8" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">9. Qual comando básico inicia uma varredura de diretórios com wordlist?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q9" id="q9a" value="a"><label class="form-check-label" for="q9a">gobuster dns -d exemplo.com -w lista.txt</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q9" id="q9b" value="b"><label class="form-check-label" for="q9b">gobuster dir -u http://exemplo.com -w /caminho/wordlist.txt</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q9" id="q9c" value="c"><label class="form-check-label" for="q9c">gobuster scan -t 80 -w lista.txt</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q9" id="q9d" value="d"><label class="form-check-label" for="q9d">gobuster run -u exemplo.com</label></div>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="card g-step" data-step="9" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">10. O que é uma boa prática antes de aumentar a wordlist ou threads?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q10" id="q10a" value="a"><label class="form-check-label" for="q10a">Testar com listas pequenas e ajustar conforme estabilidade</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q10" id="q10b" value="b"><label class="form-check-label" for="q10b">Aumentar threads para o máximo sem testes</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q10" id="q10c" value="c"><label class="form-check-label" for="q10c">Nunca usar proxy</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q10" id="q10d" value="d"><label class="form-check-label" for="q10d">Ignorar resultados 403</label></div>
+      </div>
+    </div>
+
+    <!-- NAV -->
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <div>
+        <button type="button" id="gPrevBtn" class="btn btn-outline-secondary" disabled>Anterior</button>
+        <button type="button" id="gNextBtn" class="btn btn-primary">Próxima</button>
+      </div>
+      <div>
+        <button type="button" id="gFinishBtn" class="btn btn-success" style="display:none;">Finalizar Agora</button>
+        <button type="button" id="gResetBtn" class="btn btn-secondary" style="display:none;">Refazer Quiz</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- RESULTADO -->
+  <div id="gResultCard" class="card mt-4" style="display:none;">
+    <div class="card-body">
+      <h4 class="card-title">Resultado</h4>
+      <p id="gResultText" class="mb-2"></p>
+      <p id="gTimeText" class="mb-2"></p>
+      <p id="gPerformanceText" class="mb-0"></p>
+    </div>
+  </div>
+
+  <!-- RANKING -->
+  <div class="mt-4">
+    <h5>🏆 Ranking local (melhores 5 tentativas)</h5>
+    <ul id="gRankingList" class="list-group"></ul>
+  </div>
+</section>
+
+<!-- ================= STYLES ================= -->
+<style>
+  .g-step { margin-bottom: 12px; transition: transform 0.25s ease, opacity 0.25s ease; }
+  .g-step.fadeIn { transform: translateY(0); opacity: 1; }
+  .g-step.fadeOut { transform: translateY(-8px); opacity: 0; }
+  .correct { border-left:6px solid #28a745 !important; background: rgba(40,167,69,0.06) !important; }
+  .wrong { border-left:6px solid #dc3545 !important; background: rgba(220,53,69,0.06) !important; }
+  .timer-display { font-weight:600; min-width:80px; }
+  #gTimeBar { background: linear-gradient(90deg,#0d6efd,#4a9eff); }
+  #gRankingList li { display:flex; justify-content:space-between; align-items:center; }
+  .btn-shake { animation: shake .3s; }
+  @keyframes shake { 0%{transform:translateX(0)} 25%{transform:translateX(-6px)} 50%{transform:translateX(6px)} 75%{transform:translateX(-4px)} 100%{transform:translateX(0)} }
+  @media (max-width:600px) { .timer-display { font-size:0.95rem; } }
+</style>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+(function(){
+  // CONFIG
+  const DURATION = 120; // seconds (2 min)
+  const STORAGE_KEY = "gobuster_quiz_ranking_v1";
+
+  const answers = {
+    q1: "b",
+    q2: "b",
+    q3: "b",
+    q4: "b",
+    q5: "b",
+    q6: "b",
+    q7: "b",
+    q8: "b",
+    q9: "b",
+    q10: "a"
+  };
+
+  // ELEMENTS
+  const startBtn = document.getElementById("gStartBtn");
+  const pauseBtn = document.getElementById("gPauseBtn");
+  const resumeBtn = document.getElementById("gResumeBtn");
+  const form = document.getElementById("gQuizForm");
+  const steps = Array.from(document.querySelectorAll(".g-step"));
+  const prevBtn = document.getElementById("gPrevBtn");
+  const nextBtn = document.getElementById("gNextBtn");
+  const finishBtn = document.getElementById("gFinishBtn");
+  const resetBtn = document.getElementById("gResetBtn");
+  const countdownEl = document.getElementById("gCountdown");
+  const timeBar = document.getElementById("gTimeBar");
+  const progressPct = document.getElementById("gProgressPct");
+  const resultCard = document.getElementById("gResultCard");
+  const resultText = document.getElementById("gResultText");
+  const timeText = document.getElementById("gTimeText");
+  const performanceText = document.getElementById("gPerformanceText");
+  const rankingList = document.getElementById("gRankingList");
+
+  // STATE
+  let index = 0;
+  let remaining = DURATION;
+  let intervalId = null;
+  let running = false;
+
+  // INIT
+  function init(){
+    steps.forEach(s => { s.style.display = "none"; s.classList.remove("fadeIn","fadeOut","correct","wrong"); s.querySelectorAll('.form-check').forEach(el=>{ el.classList.remove('border','rounded','p-1'); el.style.borderLeft=""; }); });
+    index = 0;
+    remaining = DURATION;
+    updateCountdown();
+    updateProgress();
+    form.style.display = "none";
+    resultCard.style.display = "none";
+    resetBtn.style.display = "none";
+    finishBtn.style.display = "none";
+    pauseBtn.style.display = "none";
+    resumeBtn.style.display = "none";
+    loadRanking();
+  }
+
+  function showStep(i){
+    steps.forEach(s=>{ s.style.display="none"; s.classList.remove("fadeIn","fadeOut"); });
+    const s = steps[i];
+    if(!s) return;
+    s.style.display = "block";
+    s.classList.add("fadeIn");
+    prevBtn.disabled = i === 0;
+    nextBtn.style.display = (i === steps.length - 1) ? "none" : "inline-block";
+    finishBtn.style.display = (i === steps.length - 1) ? "inline-block" : "none";
+    updateProgress();
+  }
+
+  function updateProgress(){
+    const ans = getAnsweredCount();
+    const pct = Math.round((ans / steps.length) * 100);
+    progressPct.textContent = pct + "%";
+  }
+
+  function getAnsweredCount(){
+    let c = 0;
+    steps.forEach(s=>{
+      const name = s.querySelector('input[type="radio"]')?.name;
+      if(name && document.querySelector(`input[name="${name}"]:checked`)) c++;
+    });
+    return c;
+  }
+
+  // TIMER
+  function startTimer(){
+    if(running) return;
+    running = true;
+    if(intervalId) clearInterval(intervalId);
+    intervalId = setInterval(()=> {
+      remaining--;
+      if(remaining < 0){ remaining = 0; clearInterval(intervalId); running = false; finalize("timeout"); return; }
+      updateCountdown();
+    }, 1000);
+    pauseBtn.style.display = "inline-block";
+    resumeBtn.style.display = "none";
+  }
+
+  function pauseTimer(){ if(!running) return; running = false; clearInterval(intervalId); pauseBtn.style.display = "none"; resumeBtn.style.display = "inline-block"; }
+
+  function resumeTimer(){ if(running) return; running = true; intervalId = setInterval(()=> {
+    remaining--;
+    if(remaining < 0){ remaining = 0; clearInterval(intervalId); running = false; finalize("timeout"); return; }
+    updateCountdown();
+  },1000); pauseBtn.style.display = "inline-block"; resumeBtn.style.display = "none"; }
+
+  function resetTimer(){ clearInterval(intervalId); running = false; remaining = DURATION; updateCountdown(); pauseBtn.style.display="none"; resumeBtn.style.display="none"; }
+
+  function updateCountdown(){
+    const mm = String(Math.floor(remaining/60)).padStart(2,'0');
+    const ss = String(remaining%60).padStart(2,'0');
+    countdownEl.textContent = `${mm}:${ss}`;
+    const pct = Math.round((remaining / DURATION) * 100);
+    timeBar.style.width = pct + "%";
+    if(pct <= 20){ timeBar.classList.add("bg-danger"); timeBar.classList.remove("bg-success"); } else { timeBar.classList.remove("bg-danger"); timeBar.classList.add("bg-success"); }
+  }
+
+  // NAV
+  nextBtn.addEventListener("click", ()=> {
+    if(!validateCurrent()){ nextBtn.classList.add("btn-shake"); setTimeout(()=> nextBtn.classList.remove("btn-shake"),350); return; }
+    if(index < steps.length - 1){ steps[index].classList.add("fadeOut"); index++; showStep(index); }
+  });
+
+  prevBtn.addEventListener("click", ()=> { if(index>0){ steps[index].classList.add("fadeOut"); index--; showStep(index); } });
+
+  function validateCurrent(){
+    const s = steps[index];
+    const name = s.querySelector('input[type="radio"]')?.name;
+    if(!name) return true;
+    const checked = document.querySelector(`input[name="${name}"]:checked`);
+    return !!checked;
+  }
+
+  finishBtn.addEventListener("click", ()=> {
+    if(!confirm("Deseja finalizar o quiz agora?")) return;
+    finalize("manual");
+  });
+
+  resetBtn.addEventListener("click", ()=> {
+    if(!confirm("Refazer quiz? Sua última tentativa será registrada no ranking.")) return;
+    resetAll();
+  });
+
+  // START
+  startBtn.addEventListener("click", ()=> {
+    form.style.display = "block";
+    startBtn.style.display = "none";
+    resetBtn.style.display = "inline-block";
+    steps.forEach(s=> s.style.display="none");
+    index = 0;
+    showStep(0);
+    remaining = DURATION;
+    updateCountdown();
+    startTimer();
+  });
+
+  pauseBtn.addEventListener("click", pauseTimer);
+  resumeBtn.addEventListener("click", resumeTimer);
+
+  // FINALIZAR & AVALIAR
+  function finalize(mode){
+    clearInterval(intervalId);
+    running = false;
+    pauseBtn.style.display = "none";
+    resumeBtn.style.display = "none";
+
+    let score = 0;
+    steps.forEach(s=>{
+      const radios = Array.from(s.querySelectorAll('input[type="radio"]'));
+      const name = radios[0]?.name;
+      if(!name) return;
+      const selected = document.querySelector(`input[name="${name}"]:checked`);
+      const right = answers[name];
+      if(selected && selected.value === right){
+        score++;
+        s.classList.add("correct");
+      } else {
+        s.classList.add("wrong");
+        radios.forEach(r => { if(r.value === right){ r.closest('.form-check').classList.add("border","rounded","p-1"); r.closest('.form-check').style.borderLeft = "4px solid #28a745"; } });
+      }
+    });
+
+    const timeUsed = DURATION - remaining;
+    const mm = Math.floor(timeUsed / 60);
+    const ss = timeUsed % 60;
+
+    resultCard.style.display = "block";
+    resultText.innerHTML = `Você acertou <strong>${score}</strong> de <strong>${steps.length}</strong> perguntas.`;
+    timeText.innerHTML = `Tempo usado: <strong>${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}</strong>`;
+    performanceText.innerHTML = evaluate(score, steps.length, timeUsed);
+
+    nextBtn.style.display = "none";
+    prevBtn.style.display = "none";
+    finishBtn.style.display = "none";
+    resetBtn.style.display = "inline-block";
+
+    saveAttempt(score, timeUsed, mode);
+    loadRanking();
+  }
+
+  function evaluate(score, total, timeUsed){
+    const pct = Math.round((score/total)*100);
+    if(pct === 100) return "🏆 Perfeito! Resultado ótimo.";
+    if(pct >= 80) return "🎉 Muito bom!";
+    if(pct >= 50) return "👍 Razoável — revise alguns pontos.";
+    return "💡 Estude mais e tente novamente.";
+  }
+
+  // RANKING (localStorage)
+  function saveAttempt(score, timeUsed, mode){
+    const arr = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    arr.push({ date: new Date().toLocaleString(), score, timeUsed, mode });
+    arr.sort((a,b)=> { if(b.score !== a.score) return b.score - a.score; return a.timeUsed - b.timeUsed; });
+    const top = arr.slice(0,5);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(top));
+  }
+
+  function loadRanking(){
+    const arr = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    rankingList.innerHTML = "";
+    if(arr.length === 0){ rankingList.innerHTML = "<li class='list-group-item'>Nenhuma tentativa registrada ainda.</li>"; return; }
+    arr.forEach((r,i)=>{
+      const mm = Math.floor(r.timeUsed / 240); const ss = r.timeUsed % 60;
+      rankingList.innerHTML += `<li class="list-group-item"><div><strong>#${i+1}</strong> — ${r.score} pts</div><small class="text-muted">${r.date} • ${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}</small></li>`;
+    });
+  }
+
+  function resetAll(){
+    steps.forEach(s=>{
+      s.querySelectorAll('input[type="radio"]').forEach(inp=> inp.checked = false);
+      s.classList.remove("correct","wrong");
+      s.querySelectorAll('.form-check').forEach(el=>{ el.classList.remove('border','rounded','p-1'); el.style.borderLeft = ""; });
+    });
+    resultCard.style.display = "none";
+    form.style.display = "block";
+    steps.forEach(s=> s.style.display="none");
+    index = 0;
+    showStep(0);
+    resetTimer();
+    startTimer();
+    nextBtn.style.display = "inline-block";
+    prevBtn.style.display = "inline-block";
+    finishBtn.style.display = "inline-block";
+    resetBtn.style.display = "inline-block";
+  }
+
+  // iniciar estado
+  init();
+
+})();
+</script>
+
 </html>
