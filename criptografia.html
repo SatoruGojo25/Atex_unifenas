@@ -184,4 +184,511 @@
   </script>
   <!--Satou-->
 </body>
+<hr class="my-5">
+
+<section id="criptoQuizFull" class="container mb-5">
+  <h2 class="mt-4"><i class="fas fa-question-circle text-primary me-2"></i> Quiz: Criptografia</h2>
+  <p>Clique em <strong>Iniciar Questionário</strong> para começar. Você terá <strong>2 minutos</strong> para responder todas as perguntas. O quiz finaliza automaticamente quando o tempo acabar.</p>
+
+  <!-- CONTROLES -->
+  <div class="mb-3">
+    <button id="cqStartBtn" class="btn btn-primary">Iniciar Questionário</button>
+    <button id="cqPauseBtn" class="btn btn-outline-warning" style="display:none;">Pausar</button>
+    <button id="cqResumeBtn" class="btn btn-outline-primary" style="display:none;">Retomar</button>
+  </div>
+
+  <!-- TIMER + BARRA -->
+  <div class="d-flex align-items-center mb-2">
+    <div class="me-3 timer-display">⏳ <span id="cqCountdown">02:00</span></div>
+    <div style="flex:1">
+      <div class="progress" style="height:14px;">
+        <div id="cqTimeBar" class="progress-bar progress-bar-striped" role="progressbar"
+             style="width:100%; transition: width 1s linear;"></div>
+      </div>
+    </div>
+    <div class="ms-3 text-end" style="min-width:110px;">
+      <small>Progresso: <span id="cqProgressPct">0%</span></small>
+    </div>
+  </div>
+
+  <!-- FORMULÁRIO (ETAPAS) -->
+  <form id="cqForm" style="display:none;">
+    <!-- Perguntas (10) -->
+    <!-- Q1 -->
+    <div class="card cq-step" data-step="0" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">1. O que é criptografia?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q1" value="a" id="cq1a"><label class="form-check-label" for="cq1a">Transformar dados em código para protegê-los</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q1" value="b" id="cq1b"><label class="form-check-label" for="cq1b">Compressão de arquivos</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q1" value="c" id="cq1c"><label class="form-check-label" for="cq1c">Um tipo de vírus</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q1" value="d" id="cq1d"><label class="form-check-label" for="cq1d">Um protocolo de rede</label></div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="card cq-step" data-step="1" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">2. Na criptografia simétrica, quantas chaves são usadas?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="a" id="cq2a"><label class="form-check-label" for="cq2a">Uma chave única para criptografar e descriptografar</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="b" id="cq2b"><label class="form-check-label" for="cq2b">Duas chaves diferentes</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="c" id="cq2c"><label class="form-check-label" for="cq2c">Nenhuma chave</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="d" id="cq2d"><label class="form-check-label" for="cq2d">Chave por bloco de dados</label></div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="card cq-step" data-step="2" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">3. Qual algoritmo é assimétrico?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="a" id="cq3a"><label class="form-check-label" for="cq3a">AES</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="b" id="cq3b"><label class="form-check-label" for="cq3b">DES</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="c" id="cq3c"><label class="form-check-label" for="cq3c">RSA</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="d" id="cq3d"><label class="form-check-label" for="cq3d">SHA-256</label></div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="card cq-step" data-step="3" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">4. Qual foi um dos primeiros métodos de criptografia mencionado no conteúdo?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q4" value="a" id="cq4a"><label class="form-check-label" for="cq4a">AES-256</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q4" value="b" id="cq4b"><label class="form-check-label" for="cq4b">Cifra de César</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q4" value="c" id="cq4c"><label class="form-check-label" for="cq4c">ECC</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q4" value="d" id="cq4d"><label class="form-check-label" for="cq4d">TLS</label></div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="card cq-step" data-step="4" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">5. Qual aplicação cotidiana foi citada como uso da criptografia?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q5" value="a" id="cq5a"><label class="form-check-label" for="cq5a">Proteção de senhas e dados em sites</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q5" value="b" id="cq5b"><label class="form-check-label" for="cq5b">Transmissão de vídeo ao vivo</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q5" value="c" id="cq5c"><label class="form-check-label" for="cq5c">Edição de imagens</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q5" value="d" id="cq5d"><label class="form-check-label" for="cq5d">Impressão 3D</label></div>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="card cq-step" data-step="5" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">6. Aplicativos como WhatsApp e Signal usam:</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q6" value="a" id="cq6a"><label class="form-check-label" for="cq6a">Criptografia de ponta a ponta</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q6" value="b" id="cq6b"><label class="form-check-label" for="cq6b">Criptografia por roteador</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q6" value="c" id="cq6c"><label class="form-check-label" for="cq6c">Apenas compressão</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q6" value="d" id="cq6d"><label class="form-check-label" for="cq6d">Nenhuma criptografia</label></div>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="card cq-step" data-step="6" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">7. A LGPD trata a criptografia como:</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q7" value="a" id="cq7a"><label class="form-check-label" for="cq7a">Uma medida fundamental de segurança</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q7" value="b" id="cq7b"><label class="form-check-label" for="cq7b">Algo proibido</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q7" value="c" id="cq7c"><label class="form-check-label" for="cq7c">Sem relação com proteção de dados</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q7" value="d" id="cq7d"><label class="form-check-label" for="cq7d">Exclusiva para arquivos públicos</label></div>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="card cq-step" data-step="7" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">8. Um grande desafio da criptografia citado foi:</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q8" value="a" id="cq8a"><label class="form-check-label" for="cq8a">Gerenciamento de chaves</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q8" value="b" id="cq8b"><label class="form-check-label" for="cq8b">Melhorar resolução de imagens</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q8" value="c" id="cq8c"><label class="form-check-label" for="cq8c">Aumentar a largura de banda</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q8" value="d" id="cq8d"><label class="form-check-label" for="cq8d">Remover senhas</label></div>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="card cq-step" data-step="8" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">9. O que é criptografia pós-quântica?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q9" value="a" id="cq9a"><label class="form-check-label" for="cq9a">Criptografia para computadores quânticos</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q9" value="b" id="cq9b"><label class="form-check-label" for="cq9b">Métodos que resistem a ataques de computadores quânticos</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q9" value="c" id="cq9c"><label class="form-check-label" for="cq9c">Cifra antiga de César moderna</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q9" value="d" id="cq9d"><label class="form-check-label" for="cq9d">Um padrão de Wi-Fi</label></div>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="card cq-step" data-step="9" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">10. Qual protocolo foi citado como protegendo redes Wi-Fi domésticas?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q10" value="a" id="cq10a"><label class="form-check-label" for="cq10a">HTTP</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q10" value="b" id="cq10b"><label class="form-check-label" for="cq10b">WPA3</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q10" value="c" id="cq10c"><label class="form-check-label" for="cq10c">FTP</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q10" value="d" id="cq10d"><label class="form-check-label" for="cq10d">POP3</label></div>
+      </div>
+    </div>
+
+    <!-- NAV -->
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <div>
+        <button type="button" id="cqPrevBtn" class="btn btn-outline-secondary" disabled>Anterior</button>
+        <button type="button" id="cqNextBtn" class="btn btn-primary">Próxima</button>
+      </div>
+      <div>
+        <button type="button" id="cqFinishBtn" class="btn btn-success" style="display:none;">Finalizar Agora</button>
+        <button type="button" id="cqResetBtn" class="btn btn-secondary" style="display:none;">Refazer Quiz</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- RESULTADO -->
+  <div id="cqResultCard" class="card mt-4" style="display:none;">
+    <div class="card-body">
+      <h4 class="card-title">Resultado</h4>
+      <p id="cqResultText" class="mb-2"></p>
+      <p id="cqTimeText" class="mb-2"></p>
+      <p id="cqPerformanceText" class="mb-0"></p>
+    </div>
+  </div>
+
+  <!-- EXPLICAÇÕES (cards) -->
+  <div id="cqExplanations" class="mt-4"></div>
+
+  <!-- RANKING -->
+  <div class="mt-4">
+    <h5>🏆 Ranking local (melhores 5 tentativas)</h5>
+    <ul id="cqRankingList" class="list-group"></ul>
+  </div>
+</section>
+
+<!-- ================= STYLES ================= -->
+<style>
+  .cq-step { margin-bottom: 12px; transition: transform .25s ease, opacity .25s ease; }
+  .cq-step.fadeIn { transform: translateY(0); opacity: 1; }
+  .cq-step.fadeOut { transform: translateY(-8px); opacity: 0; }
+  .correct { border-left:6px solid #28a745 !important; background: rgba(40,167,69,0.06) !important; }
+  .wrong { border-left:6px solid #dc3545 !important; background: rgba(220,53,69,0.06) !important; }
+  .timer-display { font-weight:600; min-width:80px; }
+  #cqTimeBar { background: linear-gradient(90deg,#0d6efd,#4a9eff); }
+  .explain-card.correct-card { border-left:6px solid #28a745; }
+  .explain-card.wrong-card { border-left:6px solid #dc3545; }
+  .btn-shake { animation: shake .3s; }
+  @keyframes shake { 0%{transform:translateX(0)} 25%{transform:translateX(-6px)} 50%{transform:translateX(6px)} 75%{transform:translateX(-4px)} 100%{transform:translateX(0)} }
+</style>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+(function(){
+  const DURATION = 120; // 2 minutes
+  const STORAGE_KEY = "cripto_quiz_ranking_v2";
+
+  // correct answers mapping
+  const answers = {
+    q1: "a",
+    q2: "a",
+    q3: "c",
+    q4: "b",
+    q5: "a",
+    q6: "a",
+    q7: "a",
+    q8: "a",
+    q9: "b",
+    q10: "b"
+  };
+
+  // explanations for each question
+  const explanations = {
+    q1: "Criptografia é o processo de transformar dados legíveis em um formato codificado para proteger confidencialidade e integridade.",
+    q2: "Criptografia simétrica usa a mesma chave para cifrar e decifrar dados — por isso é chamada de 'simétrica'.",
+    q3: "RSA é um algoritmo assimétrico que usa chave pública e privada para criptografar e descriptografar.",
+    q4: "A Cifra de César é um exemplo histórico de cifra de substituição, usada por Júlio César.",
+    q5: "Uma aplicação prática citada é a proteção de senhas e dados pessoais em sites e aplicativos (ex.: armazenar senhas com criptografia/hash).",
+    q6: "WhatsApp e Signal usam criptografia de ponta a ponta — só remetente e destinatário podem ler as mensagens.",
+    q7: "A LGPD considera medidas técnicas, como a criptografia, fundamentais para proteger dados pessoais e reduzir riscos legais.",
+    q8: "Gerenciamento de chaves (armazenamento e distribuição segura) é um grande desafio prático em criptografia.",
+    q9: "Criptografia pós-quântica refere-se a métodos projetados para resistir a ataques realizados por computadores quânticos poderosos.",
+    q10: "WPA3 é o protocolo moderno que oferece melhorias de segurança para redes Wi-Fi domésticas."
+  };
+
+  // elements
+  const startBtn = document.getElementById("cqStartBtn");
+  const pauseBtn = document.getElementById("cqPauseBtn");
+  const resumeBtn = document.getElementById("cqResumeBtn");
+  const form = document.getElementById("cqForm");
+  const steps = Array.from(document.querySelectorAll(".cq-step"));
+  const prevBtn = document.getElementById("cqPrevBtn");
+  const nextBtn = document.getElementById("cqNextBtn");
+  const finishBtn = document.getElementById("cqFinishBtn");
+  const resetBtn = document.getElementById("cqResetBtn");
+  const countdownEl = document.getElementById("cqCountdown");
+  const timeBar = document.getElementById("cqTimeBar");
+  const progressPct = document.getElementById("cqProgressPct");
+  const resultCard = document.getElementById("cqResultCard");
+  const resultText = document.getElementById("cqResultText");
+  const timeText = document.getElementById("cqTimeText");
+  const performanceText = document.getElementById("cqPerformanceText");
+  const explanationsContainer = document.getElementById("cqExplanations");
+  const rankingList = document.getElementById("cqRankingList");
+
+  // state
+  let index = 0;
+  let remaining = DURATION;
+  let intervalId = null;
+  let running = false;
+
+  // initialize
+  function init(){
+    steps.forEach(s => {
+      s.style.display = "none";
+      s.classList.remove("fadeIn","fadeOut","correct","wrong");
+      s.querySelectorAll('.form-check').forEach(el=>{ el.classList.remove('border','rounded','p-1'); el.style.borderLeft=""; });
+    });
+    index = 0;
+    remaining = DURATION;
+    updateCountdown();
+    updateProgress();
+    form.style.display = "none";
+    resultCard.style.display = "none";
+    explanationsContainer.innerHTML = "";
+    resetBtn.style.display = "none";
+    finishBtn.style.display = "none";
+    pauseBtn.style.display = "none";
+    resumeBtn.style.display = "none";
+    loadRanking();
+  }
+
+  // show step
+  function showStep(i){
+    steps.forEach(s=>{ s.style.display="none"; s.classList.remove("fadeIn","fadeOut"); });
+    const s = steps[i];
+    if(!s) return;
+    s.style.display = "block";
+    s.classList.add("fadeIn");
+    prevBtn.disabled = i === 0;
+    nextBtn.style.display = (i === steps.length - 1) ? "none" : "inline-block";
+    finishBtn.style.display = (i === steps.length - 1) ? "inline-block" : "none";
+    updateProgress();
+  }
+
+  function updateProgress(){
+    const answered = getAnsweredCount();
+    const pct = Math.round((answered / steps.length) * 100);
+    progressPct.textContent = pct + "%";
+  }
+
+  function getAnsweredCount(){
+    let c = 0;
+    steps.forEach(s=> {
+      const name = s.querySelector('input[type="radio"]')?.name;
+      if(name && document.querySelector(`input[name="${name}"]:checked`)) c++;
+    });
+    return c;
+  }
+
+  // timer functions
+  function updateCountdown(){
+    const mm = String(Math.floor(remaining / 60)).padStart(2,"0");
+    const ss = String(remaining % 60).padStart(2,"0");
+    countdownEl.textContent = `${mm}:${ss}`;
+    const pct = Math.round((remaining / DURATION) * 100);
+    timeBar.style.width = pct + "%";
+    if(pct <= 20){ timeBar.classList.add("bg-danger"); timeBar.classList.remove("bg-success"); } else { timeBar.classList.remove("bg-danger"); timeBar.classList.add("bg-success"); }
+  }
+
+  function startTimer(){
+    if(running) return;
+    running = true;
+    if(intervalId) clearInterval(intervalId);
+    intervalId = setInterval(() => {
+      remaining--;
+      if(remaining < 0){ remaining = 0; clearInterval(intervalId); running = false; finalizeQuiz("timeout"); return; }
+      updateCountdown();
+    }, 1000);
+    pauseBtn.style.display = "inline-block";
+    resumeBtn.style.display = "none";
+  }
+
+  function pauseTimer(){ if(!running) return; running = false; clearInterval(intervalId); pauseBtn.style.display = "none"; resumeBtn.style.display = "inline-block"; }
+  function resumeTimer(){ if(running) return; running = true; intervalId = setInterval(()=> { remaining--; if(remaining < 0){ remaining = 0; clearInterval(intervalId); running = false; finalizeQuiz("timeout"); return; } updateCountdown(); },1000); pauseBtn.style.display = "inline-block"; resumeBtn.style.display = "none"; }
+  function resetTimer(){ clearInterval(intervalId); running = false; remaining = DURATION; updateCountdown(); pauseBtn.style.display="none"; resumeBtn.style.display="none"; }
+
+  // navigation
+  nextBtn.addEventListener("click", ()=> {
+    if(!validateCurrent()){ nextBtn.classList.add("btn-shake"); setTimeout(()=> nextBtn.classList.remove("btn-shake"),350); return; }
+    if(index < steps.length - 1){ steps[index].classList.add("fadeOut"); index++; showStep(index); }
+  });
+
+  prevBtn.addEventListener("click", ()=> {
+    if(index > 0){ steps[index].classList.add("fadeOut"); index--; showStep(index); }
+  });
+
+  function validateCurrent(){
+    const s = steps[index];
+    const name = s.querySelector('input[type="radio"]')?.name;
+    if(!name) return true;
+    const checked = document.querySelector(`input[name="${name}"]:checked`);
+    return !!checked;
+  }
+
+  finishBtn.addEventListener("click", ()=> {
+    if(!confirm("Deseja finalizar o quiz agora?")) return;
+    finalizeQuiz("manual");
+  });
+
+  resetBtn.addEventListener("click", ()=> {
+    if(!confirm("Refazer quiz? Sua última tentativa será registrada no ranking.")) return;
+    resetAll();
+  });
+
+  // start button
+  startBtn.addEventListener("click", ()=> {
+    form.style.display = "block";
+    startBtn.style.display = "none";
+    resetBtn.style.display = "inline-block";
+    steps.forEach(s=> s.style.display="none");
+    index = 0;
+    showStep(0);
+    remaining = DURATION;
+    updateCountdown();
+    startTimer();
+  });
+
+  pauseBtn.addEventListener("click", pauseTimer);
+  resumeBtn.addEventListener("click", resumeTimer);
+
+  // finalize and build explanations
+  function finalizeQuiz(mode){
+    clearInterval(intervalId);
+    running = false;
+    pauseBtn.style.display = "none";
+    resumeBtn.style.display = "none";
+
+    let correctCount = 0;
+    explanationsContainer.innerHTML = "";
+
+    steps.forEach((s, i) => {
+      const radios = Array.from(s.querySelectorAll('input[type="radio"]'));
+      const name = radios[0]?.name;
+      if(!name) return;
+      const selected = document.querySelector(`input[name="${name}"]:checked`);
+      const right = answers[name];
+
+      // mark step card
+      if(selected && selected.value === right){
+        correctCount++;
+        s.classList.add("correct");
+      } else {
+        s.classList.add("wrong");
+        // highlight correct option visually inside the step
+        radios.forEach(r => {
+          if(r.value === right){
+            r.closest('.form-check').classList.add("border","rounded","p-1");
+            r.closest('.form-check').style.borderLeft = "4px solid #28a745";
+          }
+        });
+      }
+
+      // build explanation card
+      const userAnsText = selected ? selected.parentElement.textContent.trim() : "<em>Sem resposta</em>";
+      const correctAnsElement = radios.find(r => r.value === right);
+      const correctText = correctAnsElement ? correctAnsElement.parentElement.textContent.trim() : "—";
+      const explainText = explanations[name] || "";
+
+      const card = document.createElement("div");
+      card.className = "card mb-2 explain-card " + ((selected && selected.value === right) ? "correct-card" : "wrong-card");
+      card.innerHTML = `
+        <div class="card-body">
+          <h6 class="card-title mb-1">Pergunta ${i+1}</h6>
+          <p class="mb-1"><strong>Pergunta:</strong> ${s.querySelector('.card-body h5') ? s.querySelector('.card-body h5').textContent : ''}</p>
+          <p class="mb-1"><strong>Sua resposta:</strong> ${userAnsText}</p>
+          <p class="mb-1"><strong>Resposta correta:</strong> ${correctText}</p>
+          <p class="mb-0"><strong>Explicação:</strong> ${explainText}</p>
+        </div>
+      `;
+      explanationsContainer.appendChild(card);
+    });
+
+    // time used
+    const timeUsed = DURATION - remaining;
+    const mm = Math.floor(timeUsed / 60);
+    const ss = timeUsed % 60;
+
+    resultCard.style.display = "block";
+    resultText.innerHTML = `Você acertou <strong>${correctCount}</strong> de <strong>${steps.length}</strong> perguntas.`;
+    timeText.innerHTML = `Tempo usado: <strong>${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}</strong>`;
+    performanceText.innerHTML = evaluatePerformance(correctCount, steps.length);
+
+    // show explanations
+    explanationsContainer.scrollIntoView({behavior:'smooth'});
+
+    // adjust UI
+    nextBtn.style.display = "none";
+    prevBtn.style.display = "none";
+    finishBtn.style.display = "none";
+    resetBtn.style.display = "inline-block";
+
+    // save ranking
+    saveAttempt(correctCount, timeUsed, mode);
+    loadRanking();
+  }
+
+  function evaluatePerformance(score, total){
+    const pct = Math.round((score/total)*100);
+    if(pct === 100) return "🏆 Perfeito! Resultado ótimo.";
+    if(pct >= 80) return "🎉 Muito bom!";
+    if(pct >= 50) return "👍 Razoável — revise alguns pontos.";
+    return "💡 Estude mais e tente novamente.";
+  }
+
+  // RANKING (localStorage)
+  function saveAttempt(score, timeUsed, mode){
+    const arr = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    arr.push({ date: new Date().toLocaleString(), score, timeUsed, mode });
+    arr.sort((a,b) => { if(b.score !== a.score) return b.score - a.score; return a.timeUsed - b.timeUsed; });
+    const top = arr.slice(0,5);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(top));
+  }
+
+  function loadRanking(){
+    const arr = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    rankingList.innerHTML = "";
+    if(arr.length === 0){
+      rankingList.innerHTML = "<li class='list-group-item'>Nenhuma tentativa registrada ainda.</li>";
+      return;
+    }
+    arr.forEach((r,i) => {
+      const mm = String(Math.floor(r.timeUsed / 60)).padStart(2,'0');
+      const ss = String(r.timeUsed % 60).padStart(2,'0');
+      rankingList.innerHTML += `<li class="list-group-item d-flex justify-content-between align-items-center">
+        <div><strong>#${i+1}</strong> — ${r.score} pts</div>
+        <small class="text-muted">${r.date} • ${mm}:${ss}</small>
+      </li>`;
+    });
+  }
+
+  function resetAll(){
+    steps.forEach(s=>{
+      s.querySelectorAll('input[type="radio"]').forEach(inp=> inp.checked = false);
+      s.classList.remove("correct","wrong");
+      s.querySelectorAll('.form-check').forEach(el=>{ el.classList.remove('border','rounded','p-1'); el.style.borderLeft = ""; });
+    });
+    resultCard.style.display = "none";
+    explanationsContainer.innerHTML = "";
+    form.style.display = "block";
+    steps.forEach(s=> s.style.display="none");
+    index = 0;
+    showStep(0);
+    resetTimer();
+    startTimer();
+    nextBtn.style.display = "inline-block";
+    prevBtn.style.display = "inline-block";
+    finishBtn.style.display = "inline-block";
+    resetBtn.style.display = "inline-block";
+  }
+
+  // helper
+  function resetTimer(){ clearInterval(intervalId); running = false; remaining = DURATION; updateCountdown(); pauseBtn.style.display="none"; resumeBtn.style.display="none"; }
+
+  // initialize UI
+  init();
+
+})();
+</script>
+
 </html>

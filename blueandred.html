@@ -107,6 +107,35 @@
   font-size: 1.1rem;
   color: var(--primary);
 }
+#brpResult {
+  margin-bottom: 120px !important; /* evita sobrepor o botão de tema */
+}
+.brp-step, 
+
+  .cq-step { margin-bottom: 12px; transition: transform .25s ease, opacity .25s ease; }
+  .cq-step.fadeIn { transform: translateY(0); opacity: 1; }
+  .cq-step.fadeOut { transform: translateY(-8px); opacity: 0; }
+  .correct { border-left:6px solid #28a745 !important; background: rgba(40,167,69,0.06) !important; }
+  .wrong { border-left:6px solid #dc3545 !important; background: rgba(220,53,69,0.06) !important; }
+  .timer-display { font-weight:600; min-width:80px; }
+  #cqTimeBar { background: linear-gradient(90deg,#0d6efd,#4a9eff); }
+  .explain-card.correct-card { border-left:6px solid #28a745; }
+  .explain-card.wrong-card { border-left:6px solid #dc3545; }
+  .btn-shake { animation: shake .3s; }
+  @keyframes shake { 0%{transform:translateX(0)} 25%{transform:translateX(-6px)} 50%{transform:translateX(6px)} 75%{transform:translateX(-4px)} 100%{transform:translateX(0)} 
+  }
+  
+
+.theme-toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999 !important;
+}
+
+
+
+
 
   </style>
 
@@ -135,6 +164,7 @@
 </head>
 
 <body class="container mt-4">
+  
 
   <h1><i class="fa-solid fa-shield-halved icon blue-icon"></i>Diferença entre Blue Team e Red Team</h1>
   <p>Na segurança cibernética, as equipes <strong>Blue Team</strong> e <strong>Red Team</strong> representam os dois lados da defesa digital: um protege e o outro ataca — ambos essenciais para manter os sistemas seguros.</p>
@@ -202,63 +232,9 @@
             title="Blue Team e Red Team - Segurança Cibernética"
             allowfullscreen></iframe>
   </div>
-<!-- ======== QUIZ INTERATIVO ======== -->
-<section id="quiz" class="mt-5">
-  <h2><i class="fa-solid fa-question-circle icon"></i> Teste seus conhecimentos</h2>
-  <p>Responda as perguntas abaixo e veja quantas você acerta!</p>
 
-  <form id="quizForm" class="p-4 rounded shadow-sm">
 
-    <div class="mb-3">
-      <label class="form-label"><strong>1.</strong> Qual é o principal foco do Blue Team?</label>
-      <div>
-        <input type="radio" name="q1" value="a"> Simular ataques<br>
-        <input type="radio" name="q1" value="b"> Proteger sistemas e redes<br>
-        <input type="radio" name="q1" value="c"> Criar vírus para testes
-      </div>
-    </div>
 
-    <div class="mb-3">
-      <label class="form-label"><strong>2.</strong> O Red Team realiza:</label>
-      <div>
-        <input type="radio" name="q2" value="a"> Auditorias financeiras<br>
-        <input type="radio" name="q2" value="b"> Testes de penetração<br>
-        <input type="radio" name="q2" value="c"> Instalação de firewalls
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label"><strong>3.</strong> Qual ferramenta é mais usada pelo Red Team?</label>
-      <div>
-        <input type="radio" name="q3" value="a"> Metasploit<br>
-        <input type="radio" name="q3" value="b"> SIEM<br>
-        <input type="radio" name="q3" value="c"> Antivírus
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label"><strong>4.</strong> O Purple Team tem o papel de:</label>
-      <div>
-        <input type="radio" name="q4" value="a"> Substituir o Blue Team<br>
-        <input type="radio" name="q4" value="b"> Fazer a ponte entre Blue e Red Team<br>
-        <input type="radio" name="q4" value="c"> Somente treinar novos hackers
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label"><strong>5.</strong> O principal objetivo do Red Team é:</label>
-      <div>
-        <input type="radio" name="q5" value="a"> Encontrar vulnerabilidades<br>
-        <input type="radio" name="q5" value="b"> Criar relatórios administrativos<br>
-        <input type="radio" name="q5" value="c"> Monitorar logs do sistema
-      </div>
-    </div>
-
-    <button type="button" class="btn btn-primary" id="submitQuiz">Enviar respostas</button>
-
-    <div id="result" class="mt-4 fw-bold"></div>
-  </form>
-</section>
 
 
   <footer>
@@ -279,39 +255,368 @@
       html.setAttribute('data-bs-theme', dark ? 'light' : 'dark');
       btn.textContent = dark ? '🌙 Modo Escuro' : '☀ Modo Claro';
     });
-    // ======== QUIZ SCRIPT ========
-document.getElementById("submitQuiz").addEventListener("click", () => {
-  const correctAnswers = {
-    q1: "b",
-    q2: "b",
-    q3: "a",
-    q4: "b",
-    q5: "a"
-  };
-
-  let score = 0;
-  let total = Object.keys(correctAnswers).length;
-
-  for (const [question, answer] of Object.entries(correctAnswers)) {
-    const selected = document.querySelector(`input[name="${question}"]:checked`);
-    if (selected && selected.value === answer) {
-      score++;
-    }
-  }
-
-  const percentage = Math.round((score / total) * 100);
-  const resultDiv = document.getElementById("result");
-
-  let message = "";
-  if (percentage === 100) message = "Excelente! 🔥 Você acertou tudo!";
-  else if (percentage >= 60) message = "Muito bom! 👏 Continue estudando!";
-  else message = "Você pode melhorar! 💪 Reveja o conteúdo.";
-
-  resultDiv.innerHTML = `✅ Você acertou <strong>${score}</strong> de ${total} perguntas (${percentage}%).<br>${message}`;
-});
-
   </script>
   
   <!--Satou-->
 </body>
+<hr class="my-5">
+
+<section id="brpQuizFull" class="container mb-5">
+  <h2 class="mt-4"><i class="fas fa-question-circle text-primary me-2"></i> Quiz: Blue Team, Red Team & Purple Team</h2>
+  <p>Clique em <strong>Iniciar Questionário</strong> para começar. Você terá <strong>2 minutos</strong>.</p>
+
+  <!-- CONTROLES -->
+  <div class="mb-3">
+    <button id="brpStartBtn" class="btn btn-primary">Iniciar Questionário</button>
+    <button id="brpPauseBtn" class="btn btn-outline-warning" style="display:none;">Pausar</button>
+    <button id="brpResumeBtn" class="btn btn-outline-primary" style="display:none;">Retomar</button>
+  </div>
+
+  <!-- TIMER + BARRA -->
+  <div class="d-flex align-items-center mb-2">
+    <div class="me-3 timer-display">⏳ <span id="brpCountdown">02:00</span></div>
+    <div style="flex:1">
+      <div class="progress" style="height:14px;">
+        <div id="brpTimeBar" class="progress-bar progress-bar-striped" role="progressbar"
+             style="width:100%; transition: width 1s linear;"></div>
+      </div>
+    </div>
+    <div class="ms-3 text-end" style="min-width:110px;">
+      <small>Progresso: <span id="brpProgressPct">0%</span></small>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <form id="brpForm" style="display:none;">
+
+    <!-- === PERGUNTAS === -->
+    <!-- Cada pergunta está idêntica à sua, só adicionei classes e organização -->
+
+    <!-- Q1 -->
+    <div class="card brp-step" data-step="0" style="display:none;">
+      <div class="card-body">
+        <h5>1. Qual é a principal função do Blue Team?</h5>
+        <div class="form-check"><input type="radio" name="q1" value="a">Detectar e responder a ameaças</div>
+        <div class="form-check"><input type="radio" name="q1" value="b">Invadir redes para testes</div>
+        <div class="form-check"><input type="radio" name="q1" value="c">Auditar código fonte</div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="card brp-step" data-step="1" style="display:none;">
+      <div class="card-body">
+        <h5>2. O Red Team atua principalmente como:</h5>
+        <div class="form-check"><input type="radio" name="q2" value="a">Defensores da rede</div>
+        <div class="form-check"><input type="radio" name="q2" value="b">Atacantes éticos que simulam invasões</div>
+        <div class="form-check"><input type="radio" name="q2" value="c">Gerentes de políticas internas</div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="card brp-step" data-step="2" style="display:none;">
+      <div class="card-body">
+        <h5>3. Qual ferramenta é típica do Red Team?</h5>
+        <div class="form-check"><input type="radio" name="q3" value="a">SIEM</div>
+        <div class="form-check"><input type="radio" name="q3" value="b">Metasploit</div>
+        <div class="form-check"><input type="radio" name="q3" value="c">Firewall</div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="card brp-step" data-step="3" style="display:none;">
+      <div class="card-body">
+        <h5>4. O Blue Team utiliza frequentemente:</h5>
+        <div class="form-check"><input type="radio" name="q4" value="a">Ferramentas de SOC como SIEM</div>
+        <div class="form-check"><input type="radio" name="q4" value="b">Exploração de vulnerabilidades</div>
+        <div class="form-check"><input type="radio" name="q4" value="c">Phishing ofensivo</div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="card brp-step" data-step="4" style="display:none;">
+      <div class="card-body">
+        <h5>5. O Purple Team serve para:</h5>
+        <div class="form-check"><input type="radio" name="q5" value="a">Criar firewall físico</div>
+        <div class="form-check"><input type="radio" name="q5" value="b">Ajudar na comunicação entre Blue e Red Team</div>
+        <div class="form-check"><input type="radio" name="q5" value="c">Fornecer backup de dados</div>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="card brp-step" data-step="5" style="display:none;">
+      <div class="card-body">
+        <h5>6. O Red Team tenta encontrar:</h5>
+        <div class="form-check"><input type="radio" name="q6" value="a">Melhorias visuais no site</div>
+        <div class="form-check"><input type="radio" name="q6" value="b">Vulnerabilidades exploráveis</div>
+        <div class="form-check"><input type="radio" name="q6" value="c">Erros de ortografia</div>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="card brp-step" data-step="6" style="display:none;">
+      <div class="card-body">
+        <h5>7. O Blue Team reage principalmente a:</h5>
+        <div class="form-check"><input type="radio" name="q7" value="a">Incidentes e alertas de segurança</div>
+        <div class="form-check"><input type="radio" name="q7" value="b">Atualizações de design</div>
+        <div class="form-check"><input type="radio" name="q7" value="c">Feedback do usuário</div>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="card brp-step" data-step="7" style="display:none;">
+      <div class="card-body">
+        <h5>8. Um exemplo de ferramenta usada pelo Blue Team é:</h5>
+        <div class="form-check"><input type="radio" name="q8" value="a">Burp Suite</div>
+        <div class="form-check"><input type="radio" name="q8" value="b">Nmap</div>
+        <div class="form-check"><input type="radio" name="q8" value="c">Sistema de detecção de intrusão (IDS)</div>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="card brp-step" data-step="8" style="display:none;">
+      <div class="card-body">
+        <h5>9. O Purple Team ajuda a garantir que:</h5>
+        <div class="form-check"><input type="radio" name="q9" value="a">Os ataques do Red Team resultem em melhorias defensivas</div>
+        <div class="form-check"><input type="radio" name="q9" value="b">Somente o Red Team tenha acesso ao sistema</div>
+        <div class="form-check"><input type="radio" name="q9" value="c">Relatórios sejam eliminados</div>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="card brp-step" data-step="9" style="display:none;">
+      <div class="card-body">
+        <h5>10. Quem analisa logs e monitora alertas?</h5>
+        <div class="form-check"><input type="radio" name="q10" value="a">Red Team</div>
+        <div class="form-check"><input type="radio" name="q10" value="b">Blue Team</div>
+        <div class="form-check"><input type="radio" name="q10" value="c">Purple Team</div>
+      </div>
+    </div>
+
+    <!-- BOTÕES DE NAVEGAÇÃO -->
+    <div class="d-flex justify-content-between mt-3">
+      <button type="button" id="prevBtn" class="btn btn-secondary" style="display:none;">Anterior</button>
+      <button type="button" id="nextBtn" class="btn btn-primary" style="display:none;">Próxima</button>
+      <button type="button" id="finishBtn" class="btn btn-success" style="display:none;">Finalizar</button>
+    </div>
+
+  </form>
+
+  <div id="brpResult" class="alert alert-info mt-4" style="display:none;"></div>
+</section>
+
+<script>
+/* === CONFIG === */
+const duration = 120;
+let timeLeft = duration;
+let currentStep = 0;
+let totalSteps = 10;
+let interval = null;
+
+/* === ELEMENTOS === */
+const brpForm = document.getElementById("brpForm");
+const resultDiv = document.getElementById("brpResult");
+const steps = document.querySelectorAll(".brp-step");
+
+const startBtn = document.getElementById("brpStartBtn");
+const pauseBtn = document.getElementById("brpPauseBtn");
+const resumeBtn = document.getElementById("brpResumeBtn");
+
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const finishBtn = document.getElementById("finishBtn");
+
+const countdownDisplay = document.getElementById("brpCountdown");
+const timeBar = document.getElementById("brpTimeBar");
+const progressPct = document.getElementById("brpProgressPct");
+
+/* === Gabarito === */
+const answers = {
+  q1:"a", q2:"b", q3:"b", q4:"a", q5:"b",
+  q6:"b", q7:"a", q8:"c", q9:"a", q10:"b"
+};
+
+/* === Funções === */
+function formatTime(sec){
+  const m = String(Math.floor(sec/60)).padStart(2,"0");
+  const s = String(sec%60).padStart(2,"0");
+  return `${m}:${s}`;
+}
+
+function showStep(n){
+  steps.forEach(s => s.style.display="none");
+  steps[n].style.display="block";
+
+  prevBtn.style.display = n === 0 ? "none" : "inline-block";
+  nextBtn.style.display = n === totalSteps - 1 ? "none" : "inline-block";
+  finishBtn.style.display = n === totalSteps - 1 ? "inline-block" : "none";
+
+  progressPct.textContent = Math.round((n / totalSteps) * 100) + "%";
+}
+
+function startTimer(){
+  interval = setInterval(()=>{
+    if(timeLeft <= 0){
+      finishQuiz();
+      return;
+    }
+    timeLeft--;
+    countdownDisplay.textContent = formatTime(timeLeft);
+    timeBar.style.width = `${(timeLeft/duration)*100}%`;
+  },1000);
+}
+
+function startQuiz(){
+  startBtn.style.display="none";
+  pauseBtn.style.display="inline-block";
+  brpForm.style.display="block";
+
+  currentStep = 0;
+  timeLeft = duration;
+  showStep(currentStep);
+
+  startTimer();
+}
+
+function pauseQuiz(){
+  clearInterval(interval);
+  pauseBtn.style.display="none";
+  resumeBtn.style.display="inline-block";
+}
+
+function resumeQuiz(){
+  resumeBtn.style.display="none";
+  pauseBtn.style.display="inline-block";
+  startTimer();
+}
+
+function finishQuiz(){
+  clearInterval(interval);
+  brpForm.style.display="none";
+  pauseBtn.style.display="none";
+  resumeBtn.style.display="none";
+
+  let score = 0;
+  for(const q in answers){
+    const selected = document.querySelector(`input[name="${q}"]:checked`);
+    if(selected && selected.value === answers[q]) score++;
+  }
+
+  resultDiv.style.display="block";
+  resultDiv.innerHTML = `
+    <h4>Resultado Final</h4>
+    <p><strong>${score}</strong> de ${totalSteps} questões corretas.</p>
+    <p>Desempenho: <strong>${Math.round((score/totalSteps)*100)}%</strong></p>
+    <button class="btn btn-primary mt-2" onclick="location.reload()">Refazer Quiz</button>
+  `;
+}
+
+/* === Controles === */
+startBtn.onclick = startQuiz;
+pauseBtn.onclick = pauseQuiz;
+resumeBtn.onclick = resumeQuiz;
+
+nextBtn.onclick = () => {
+  if(currentStep < totalSteps - 1){
+    currentStep++;
+    showStep(currentStep);
+  }
+};
+
+prevBtn.onclick = () => {
+  if(currentStep > 0){
+    currentStep--;
+    showStep(currentStep);
+  }
+};
+
+finishBtn.onclick = finishQuiz;
+function finishQuiz(){
+  clearInterval(interval);
+  brpForm.style.display="none";
+  pauseBtn.style.display="none";
+  resumeBtn.style.display="none";
+
+  let score = 0;
+  let explanationsHTML = "";
+
+  const explanations = {
+    q1: {
+      correct: "a",
+      text: "O Blue Team é responsável por defender o ambiente, detectando e respondendo rapidamente a incidentes e comportamentos suspeitos."
+    },
+    q2: {
+      correct: "b",
+      text: "O Red Team simula ataques reais para testar as defesas, agindo como um invasor ético."
+    },
+    q3: {
+      correct: "b",
+      text: "Metasploit é amplamente utilizado pelo Red Team para exploração de vulnerabilidades."
+    },
+    q4: {
+      correct: "a",
+      text: "Ferramentas de SOC como SIEM são fundamentais para monitoramento, correlação de eventos e detecção de anomalias."
+    },
+    q5: {
+      correct: "b",
+      text: "O Purple Team atua como ponte, garantindo que Red e Blue Team trabalhem de forma colaborativa."
+    },
+    q6: {
+      correct: "b",
+      text: "A função principal do Red Team é identificar e explorar vulnerabilidades que atacantes reais poderiam usar."
+    },
+    q7: {
+      correct: "a",
+      text: "O Blue Team reage a alertas e incidentes de segurança, buscando mitigar danos rapidamente."
+    },
+    q8: {
+      correct: "c",
+      text: "IDS (Sistema de Detecção de Intrusão) é amplamente usado pelo Blue Team para identificar comportamentos suspeitos."
+    },
+    q9: {
+      correct: "a",
+      text: "O Purple Team garante que os ataques simulados do Red Team gerem melhorias práticas aplicadas pelo Blue Team."
+    },
+    q10: {
+      correct: "b",
+      text: "O Blue Team monitora logs, eventos e alertas, normalmente em ambientes SOC."
+    }
+  };
+
+  // Verificação de acertos e geração das explicações
+  for (let i = 1; i <= 10; i++) {
+    const q = "q" + i;
+    const selected = document.querySelector(`input[name="${q}"]:checked`);
+    const userAnswer = selected ? selected.value : "(não respondida)";
+    const correct = explanations[q].correct;
+
+    if (selected && userAnswer === correct) score++;
+
+    explanationsHTML += `
+      <div class="card mt-3">
+        <div class="card-body">
+          <h5><strong>Questão ${i}</strong></h5>
+          <p><strong>Sua resposta:</strong> ${userAnswer.toUpperCase()}</p>
+          <p><strong>Resposta correta:</strong> ${correct.toUpperCase()}</p>
+          <p><strong>Explicação:</strong> ${explanations[q].text}</p>
+        </div>
+      </div>
+    `;
+  }
+
+  resultDiv.style.display="block";
+  resultDiv.innerHTML = `
+    <h4>Resultado Final</h4>
+    <p><strong>${score}</strong> de 10 questões corretas.</p>
+    <p>Desempenho: <strong>${Math.round((score/10)*100)}%</strong></p>
+
+    <hr>
+    <h4>Explicações das Questões</h4>
+    ${explanationsHTML}
+
+    <button class="btn btn-primary mt-3" onclick="location.reload()">Refazer Quiz</button>
+  `;
+}
+
+</script>
+
 </html>
