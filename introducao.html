@@ -136,7 +136,7 @@
     <!-- SCRIPT BOOTSTRAP -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- DARK MODE AUTO + SUAVE -->
+
 <style>
   html {
     transition: background-color 0.4s ease, color 0.4s ease;
@@ -366,5 +366,558 @@
     }
   </style>
 </body>
+<!-- ================= QUIZ COMPLETO: Regres­sivo + Barra Animada + Step-by-step + Ranking ================= -->
+<hr class="my-5">
+
+<section id="quizSection" class="container">
+  <h2 class="mt-4"><i class="fas fa-question-circle text-primary me-2"></i> Teste seus Conhecimentos</h2>
+  <p class="mb-3">Clique em <strong>Iniciar Questionário</strong> para começar. Você terá <strong>2 minutos</strong> para responder todas as perguntas. Quando o tempo acabar, o quiz será finalizado automaticamente.</p>
+
+  <!-- CONTROLES INICIAIS -->
+  <div class="mb-3">
+    <button id="startBtn" class="btn btn-primary">Iniciar Questionário</button>
+    <button id="resumeBtn" class="btn btn-outline-primary" style="display:none;">Continuar</button>
+    <button id="pauseBtn" class="btn btn-outline-warning" style="display:none;">Pausar</button>
+  </div>
+
+  <!-- TIMER + BARRA -->
+  <div class="d-flex align-items-center mb-2">
+    <div class="me-3 timer-display">
+      ⏳ <span id="countdown">02:00</span>
+    </div>
+    <div style="flex:1">
+      <div class="progress" style="height:14px;">
+        <div id="timeBar" class="progress-bar progress-bar-striped" role="progressbar"
+             style="width:100%; transition: width 1s linear;"></div>
+      </div>
+    </div>
+    <div class="ms-3 text-end" style="min-width:110px;">
+      <small>Progresso: <span id="progressPct">0%</span></small>
+    </div>
+  </div>
+
+  <!-- QUIZ (ETAPAS) -->
+  <form id="quizForm" style="display:none;">
+    <!-- STEP 1 -->
+    <div class="card step" data-step="0" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">1. O que é segurança cibernética?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1a" value="a"><label class="form-check-label" for="q1a">Equipamentos para detectar vírus</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1b" value="b"><label class="form-check-label" for="q1b">Práticas e tecnologias para proteger sistemas</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1c" value="c"><label class="form-check-label" for="q1c">Apenas antivírus</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1d" value="d"><label class="form-check-label" for="q1d">Um tipo de criptografia</label></div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="card step" data-step="1" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">2. Qual das opções NÃO é uma ameaça cibernética?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2a" value="a"><label class="form-check-label" for="q2a">Malware</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2b" value="b"><label class="form-check-label" for="q2b">Phishing</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2c" value="c"><label class="form-check-label" for="q2c">Ransomware</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2d" value="d"><label class="form-check-label" for="q2d">Backup automático</label></div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="card step" data-step="2" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">3. Qual é o objetivo do ransomware?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3a" value="a"><label class="form-check-label" for="q3a">Invadir redes sociais</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3b" value="b"><label class="form-check-label" for="q3b">Bloquear dados e exigir pagamento</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3c" value="c"><label class="form-check-label" for="q3c">Criar senhas</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3d" value="d"><label class="form-check-label" for="q3d">Atualizar sistemas</label></div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="card step" data-step="3" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">4. Qual é uma boa prática de segurança?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4a" value="a"><label class="form-check-label" for="q4a">Reutilizar a mesma senha</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4b" value="b"><label class="form-check-label" for="q4b">Abrir anexos desconhecidos</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4c" value="c"><label class="form-check-label" for="q4c">Usar senhas fortes e únicas</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4d" value="d"><label class="form-check-label" for="q4d">Desativar atualizações</label></div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="card step" data-step="4" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">5. O que é engenharia social?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5a" value="a"><label class="form-check-label" for="q5a">Criação de firewalls</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5b" value="b"><label class="form-check-label" for="q5b">Manipulação psicológica para obter informações</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5c" value="c"><label class="form-check-label" for="q5c">Técnica de criptografia</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5d" value="d"><label class="form-check-label" for="q5d">Configuração de roteadores</label></div>
+      </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="card step" data-step="5" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">6. O que define o phishing?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q6" id="q6a" value="a"><label class="form-check-label" for="q6a">Só aparece em Wi-Fi pública</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q6" id="q6b" value="b"><label class="form-check-label" for="q6b">Envio de mensagens falsas para enganar</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q6" id="q6c" value="c"><label class="form-check-label" for="q6c">Ataque físico ao dispositivo</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q6" id="q6d" value="d"><label class="form-check-label" for="q6d">Um antivírus avançado</label></div>
+      </div>
+    </div>
+
+    <!-- STEP 7 -->
+    <div class="card step" data-step="6" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">7. Qual técnica envolve oferecer algo atrativo para induzir a vítima?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q7" id="q7a" value="a"><label class="form-check-label" for="q7a">Phishing</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q7" id="q7b" value="b"><label class="form-check-label" for="q7b">Pretexting</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q7" id="q7c" value="c"><label class="form-check-label" for="q7c">Baiting</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q7" id="q7d" value="d"><label class="form-check-label" for="q7d">Quid Pro Quo</label></div>
+      </div>
+    </div>
+
+    <!-- STEP 8 -->
+    <div class="card step" data-step="7" style="display:none;">
+      <div class="card-body">
+        <h5 class="card-title">8. Qual prática aumenta a segurança das contas?</h5>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q8" id="q8a" value="a"><label class="form-check-label" for="q8a">Ignorar atualizações</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q8" id="q8b" value="b"><label class="form-check-label" for="q8b">Usar autenticação de dois fatores (2FA)</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q8" id="q8c" value="c"><label class="form-check-label" for="q8c">Usar senhas curtas</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="q8" id="q8d" value="d"><label class="form-check-label" for="q8d">Compartilhar senhas</label></div>
+      </div>
+    </div>
+
+    <!-- NAV -->
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <div>
+        <button type="button" id="prevBtn" class="btn btn-outline-secondary" disabled>Anterior</button>
+        <button type="button" id="nextBtn" class="btn btn-primary">Próxima</button>
+      </div>
+      <div>
+        <button type="button" id="finishBtn" class="btn btn-success" style="display:none;">Finalizar Agora</button>
+        <button type="button" id="resetBtn" class="btn btn-secondary" style="display:none;">Refazer Quiz</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- RESULTADO -->
+  <div id="resultCard" class="card mt-4" style="display:none;">
+    <div class="card-body">
+      <h4 class="card-title">Resultado</h4>
+      <p id="resultText" class="mb-2"></p>
+      <p id="timeText" class="mb-2"></p>
+      <p id="performanceText" class="mb-0"></p>
+    </div>
+  </div>
+
+  <!-- RANKING -->
+  <div class="mt-4">
+    <h5>🏆 Ranking local (melhores 5 tentativas)</h5>
+    <ul id="rankingList" class="list-group"></ul>
+  </div>
+</section>
+
+<!-- ================= STYLES ================= -->
+<style>
+  .step { margin-bottom: 12px; transition: transform 0.25s ease, opacity 0.25s ease; }
+  .step.fadeIn { transform: translateY(0); opacity: 1; }
+  .step.fadeOut { transform: translateY(-8px); opacity: 0; }
+  .correct { border-left:6px solid #28a745 !important; background: rgba(40,167,69,0.06) !important; }
+  .wrong { border-left:6px solid #dc3545 !important; background: rgba(220,53,69,0.06) !important; }
+  .timer-display { font-weight:600; min-width:80px; }
+  #timeBar { background: linear-gradient(90deg,#0d6efd,#4a9eff); }
+  #rankingList li { display:flex; justify-content:space-between; align-items:center; }
+  @media (max-width:600px) {
+    .timer-display { font-size:0.95rem; }
+  }
+</style>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+(function(){
+  // CONFIGURAÇÕES
+  const DURATION_SECONDS = 120; // 2 minutos
+  const STORAGE_KEY = "cyber_quiz_ranking_v1";
+
+  // RESPOSTAS CORRETAS
+  const answers = {
+    q1: "b",
+    q2: "d",
+    q3: "b",
+    q4: "c",
+    q5: "b",
+    q6: "b",
+    q7: "c",
+    q8: "b"
+  };
+
+  // ELEMENTOS
+  const startBtn = document.getElementById("startBtn");
+  const resumeBtn = document.getElementById("resumeBtn");
+  const pauseBtn = document.getElementById("pauseBtn");
+  const quizForm = document.getElementById("quizForm");
+  const steps = Array.from(document.querySelectorAll(".step"));
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const finishBtn = document.getElementById("finishBtn");
+  const resetBtn = document.getElementById("resetBtn");
+  const countdownEl = document.getElementById("countdown");
+  const timeBar = document.getElementById("timeBar");
+  const progressPct = document.getElementById("progressPct");
+  const resultCard = document.getElementById("resultCard");
+  const resultText = document.getElementById("resultText");
+  const timeText = document.getElementById("timeText");
+  const performanceText = document.getElementById("performanceText");
+  const rankingList = document.getElementById("rankingList");
+
+  // ESTADO
+  let current = 0;
+  let remaining = DURATION_SECONDS;
+  let intervalId = null;
+  let running = false;
+  let startedAt = null;
+
+  // Inicializar
+  function init(){
+    // mostrar primeira step invisível (preparação)
+    steps.forEach((s,i) => {
+      s.style.display = "none";
+      s.classList.remove("fadeIn","fadeOut");
+    });
+    current = 0;
+    showStep(0);
+    loadRanking();
+    updateProgress();
+    updateCountdownDisplay();
+    quizForm.style.display = "none";
+    resultCard.style.display = "none";
+    resetBtn.style.display = "none";
+    finishBtn.style.display = "none";
+    pauseBtn.style.display = "none";
+    resumeBtn.style.display = "none";
+  }
+
+  function showStep(idx){
+    // esconder todos
+    steps.forEach((s,i) => {
+      s.style.display = "none";
+      s.classList.remove("fadeIn","fadeOut");
+    });
+    // mostrar idx
+    const step = steps[idx];
+    if(!step) return;
+    step.style.display = "block";
+    step.classList.add("fadeIn");
+    // controles
+    prevBtn.disabled = idx === 0;
+    nextBtn.style.display = (idx === steps.length - 1) ? "none" : "inline-block";
+    finishBtn.style.display = (idx === steps.length - 1) ? "inline-block" : "none";
+    updateProgress();
+  }
+
+  function updateProgress(){
+    const pct = Math.round( ( (getAnsweredCount()) / steps.length ) * 100 );
+    progressPct.textContent = pct + "%";
+  }
+
+  function getAnsweredCount(){
+    let count = 0;
+    steps.forEach((s) => {
+      const q = s.getAttribute("data-step");
+      const name = s.querySelector('input[type="radio"]')?.name;
+      if (name) {
+        if (document.querySelector(`input[name="${name}"]:checked`)) count++;
+      }
+    });
+    return count;
+  }
+
+  function startTimer(){
+    if(running) return;
+    running = true;
+    startedAt = Date.now();
+    if(intervalId) clearInterval(intervalId);
+    intervalId = setInterval(() => {
+      remaining--;
+      if (remaining < 0) {
+        remaining = 0;
+        clearInterval(intervalId);
+        running = false;
+        finalizeQuiz("timeout");
+        return;
+      }
+      updateCountdownDisplay();
+    }, 1000);
+    pauseBtn.style.display = "inline-block";
+    resumeBtn.style.display = "none";
+  }
+
+  function pauseTimer(){
+    if(!running) return;
+    running = false;
+    clearInterval(intervalId);
+    pauseBtn.style.display = "none";
+    resumeBtn.style.display = "inline-block";
+  }
+
+  function resumeTimer(){
+    if(running) return;
+    running = true;
+    intervalId = setInterval(() => {
+      remaining--;
+      if (remaining < 0) {
+        remaining = 0;
+        clearInterval(intervalId);
+        running = false;
+        finalizeQuiz("timeout");
+        return;
+      }
+      updateCountdownDisplay();
+    }, 1000);
+    pauseBtn.style.display = "inline-block";
+    resumeBtn.style.display = "none";
+  }
+
+  function resetTimer(){
+    clearInterval(intervalId);
+    running = false;
+    remaining = DURATION_SECONDS;
+    updateCountdownDisplay();
+    pauseBtn.style.display = "none";
+    resumeBtn.style.display = "none";
+  }
+
+  function updateCountdownDisplay(){
+    const mm = String(Math.floor(remaining / 60)).padStart(2,'0');
+    const ss = String(remaining % 60).padStart(2,'0');
+    countdownEl.textContent = `${mm}:${ss}`;
+
+    // barra animada
+    const pct = Math.round((remaining / DURATION_SECONDS) * 100);
+    timeBar.style.width = pct + "%";
+
+    // mudar cor quando crítico (<20%)
+    if(pct <= 20) {
+      timeBar.classList.add("bg-danger");
+      timeBar.classList.remove("bg-success");
+    } else {
+      timeBar.classList.remove("bg-danger");
+      timeBar.classList.add("bg-success");
+    }
+  }
+
+  // Navegação
+  nextBtn.addEventListener("click", () => {
+    if (!validateCurrent()) {
+      // alerta leve
+      nextBtn.classList.add("btn-shake");
+      setTimeout(()=> nextBtn.classList.remove("btn-shake"), 400);
+      return;
+    }
+    if (current < steps.length - 1) {
+      steps[current].classList.add("fadeOut");
+      current++;
+      showStep(current);
+    }
+    updateProgress();
+  });
+
+  prevBtn.addEventListener("click", () => {
+    if (current > 0) {
+      steps[current].classList.add("fadeOut");
+      current--;
+      showStep(current);
+    }
+  });
+
+  function validateCurrent(){
+    // exige que o usuário selecione uma resposta para avançar
+    const s = steps[current];
+    const name = s.querySelector('input[type="radio"]')?.name;
+    if (!name) return true;
+    const checked = document.querySelector(`input[name="${name}"]:checked`);
+    return !!checked;
+  }
+
+  finishBtn.addEventListener("click", () => {
+    if (!confirm("Deseja finalizar o quiz agora?")) return;
+    finalizeQuiz("manual");
+  });
+
+  resetBtn.addEventListener("click", () => {
+    if (!confirm("Refazer quiz? Sua última tentativa será perdida (mas ficará registrada no ranking).")) return;
+    resetAll();
+  });
+
+  // START LOGIC
+  startBtn.addEventListener("click", () => {
+    // mostrar form
+    quizForm.style.display = "block";
+    startBtn.style.display = "none";
+    resetBtn.style.display = "inline-block";
+    // mostrar primeira pergunta
+    steps.forEach((s,i) => s.style.display = "none");
+    current = 0;
+    showStep(0);
+    // iniciar timer
+    remaining = DURATION_SECONDS;
+    updateCountdownDisplay();
+    startTimer();
+  });
+
+  pauseBtn.addEventListener("click", pauseTimer);
+  resumeBtn.addEventListener("click", resumeTimer);
+
+  // Finalizar e avaliar
+  function finalizeQuiz(mode){
+    // stop timer
+    clearInterval(intervalId);
+    running = false;
+    pauseBtn.style.display = "none";
+    resumeBtn.style.display = "none";
+
+    // marcar respostas certas/erradas
+    let correctCount = 0;
+    steps.forEach((s) => {
+      const radios = Array.from(s.querySelectorAll('input[type="radio"]'));
+      const qName = radios[0]?.name;
+      if(!qName) return;
+      const selected = document.querySelector(`input[name="${qName}"]:checked`);
+      const right = answers[qName];
+      // highlight the card
+      if (selected && selected.value === right) {
+        correctCount++;
+        s.classList.add("correct");
+      } else {
+        s.classList.add("wrong");
+        // também marcar a alternativa correta para visual
+        radios.forEach(r => {
+          if(r.value === right){
+            r.closest('.form-check').classList.add("border", "rounded", "p-1");
+            r.closest('.form-check').style.borderLeft = "4px solid #28a745";
+          }
+        });
+      }
+    });
+
+    // calcular tempo usado
+    const timeUsed = DURATION_SECONDS - remaining;
+    const mm = Math.floor(timeUsed / 60);
+    const ss = timeUsed % 60;
+
+    // resultado textual
+    resultCard.style.display = "block";
+    resultText.innerHTML = `Você acertou <strong>${correctCount}</strong> de <strong>${steps.length}</strong> perguntas.`;
+    timeText.innerHTML = `Tempo usado: <strong>${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}</strong>`;
+    performanceText.innerHTML = evaluatePerformance(correctCount, steps.length, timeUsed);
+
+    // ajustar UI
+    nextBtn.style.display = "none";
+    prevBtn.style.display = "none";
+    finishBtn.style.display = "none";
+    resetBtn.style.display = "inline-block";
+
+    // salvar ranking
+    saveAttempt(correctCount, timeUsed, mode);
+    loadRanking();
+  }
+
+  function evaluatePerformance(score, total, timeUsed){
+    const pct = Math.round((score/total)*100);
+    let medal = "";
+    if (pct === 100) medal = "🏅 Perfeito! Medalha de Ouro!";
+    else if (pct >= 80) medal = "🥈 Muito bom! Medalha de Prata!";
+    else if (pct >= 50) medal = "🥉 Bom! Continue praticando.";
+    else medal = "💡 Estude mais e tente novamente.";
+    return `${medal} (acertos: ${pct}%)`;
+  }
+
+  // SALVAR E LER RANKING
+  function saveAttempt(score, timeUsed, mode) {
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    data.push({
+      date: new Date().toLocaleString(),
+      score,
+      timeUsed,
+      mode
+    });
+    // ordenar por score desc, timeUsed asc
+    data.sort((a,b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      return a.timeUsed - b.timeUsed;
+    });
+    const top = data.slice(0,5);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(top));
+  }
+
+  function loadRanking() {
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    rankingList.innerHTML = "";
+    if (data.length === 0) {
+      rankingList.innerHTML = `<li class="list-group-item">Nenhuma tentativa registrada ainda.</li>`;
+      return;
+    }
+    data.forEach((r, i) => {
+      const mm = Math.floor(r.timeUsed / 60);
+      const ss = r.timeUsed % 60;
+      rankingList.innerHTML += `
+        <li class="list-group-item">
+          <div><strong>#${i+1}</strong> — ${r.score} pts</div>
+          <small class="text-muted">${r.date} • ${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}</small>
+        </li>`;
+    });
+  }
+
+  function resetAll(){
+    // limpar seleções e classes
+    steps.forEach(s => {
+      s.querySelectorAll('input[type="radio"]').forEach(inp => inp.checked = false);
+      s.classList.remove("correct","wrong");
+      s.querySelectorAll('.form-check').forEach(el => {
+        el.classList.remove('border','rounded','p-1');
+        el.style.borderLeft = "";
+      });
+    });
+    // esconder resultado
+    resultCard.style.display = "none";
+    // mostrar form and first step
+    quizForm.style.display = "block";
+    steps.forEach(s => s.style.display = "none");
+    current = 0;
+    showStep(0);
+    // reiniciar timer
+    resetTimer();
+    startTimer();
+    nextBtn.style.display = "inline-block";
+    prevBtn.style.display = "inline-block";
+    finishBtn.style.display = "inline-block";
+    resetBtn.style.display = "inline-block";
+  }
+
+  // iniciar
+  init();
+})();
+</script>
+
+<style>
+.question {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  transition: 0.3s;
+  background: rgba(255,255,255,0.05);
+}
+.correto {
+  border-left: 6px solid #28a745;
+  background: rgba(40, 167, 69, 0.1);
+}
+.errado {
+  border-left: 6px solid #dc3545;
+  background: rgba(220, 53, 69, 0.1);
+}
+#resultado {
+  transition: opacity 0.5s ease;
+}
+</style>
+
 <footer><p>This site was developed for educational purposes as part of the Cyber Security course at UNIFENAS.</p></footer>
 </html>
